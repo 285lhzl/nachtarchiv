@@ -1,0 +1,2480 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <title>Nachtarchiv</title>
+  <meta name="theme-color" content="#0A090F" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="apple-mobile-web-app-title" content="Nachtarchiv" />
+  <meta name="description" content="Zufällige Die drei ???-Folge für die Nacht." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,900;1,400;1,700;1,900&family=Barlow+Condensed:wght@300;400;600;700;800;900&family=DM+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --pink: #FF5C7A;
+      --pink-dark: #F0405E;
+      --pink-dim: rgba(255,92,122,0.12);
+      --indigo: #6366F1;
+      --bg: #0A090F;
+      --bg2: #0F0E16;
+      --bg3: #14131C;
+      --cream: #E8E2D9;
+      --ink: rgba(232,226,217,0.9);
+      --ink2: rgba(232,226,217,0.56);
+      --ink3: rgba(232,226,217,0.10);
+      --ink4: rgba(232,226,217,0.05);
+      --shadow: 0 20px 60px rgba(0,0,0,0.35);
+      --radius: 26px;
+    }
+    html { scroll-behavior: smooth; }
+    body {
+      min-height: 100vh;
+      background:
+        radial-gradient(circle at top right, rgba(99,102,241,0.12), transparent 28%),
+        radial-gradient(circle at top left, rgba(255,92,122,0.08), transparent 25%),
+        var(--bg);
+      color: var(--ink);
+      font-family: 'Barlow Condensed', sans-serif;
+      overflow-x: hidden;
+    }
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background: repeating-linear-gradient(
+        0deg,
+        transparent,
+        transparent 3px,
+        rgba(255,92,122,0.012) 3px,
+        rgba(255,92,122,0.012) 4px
+      );
+      pointer-events: none;
+      opacity: 0.45;
+    }
+    .shell {
+      width: min(100%, 860px);
+      margin: 0 auto;
+      padding: 20px 18px 40px;
+      position: relative;
+      z-index: 1;
+    }
+    .topbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+      padding: 12px 2px 22px;
+      border-bottom: 1px solid var(--ink3);
+      margin-bottom: 18px;
+    }
+    .mono {
+      font-family: 'DM Mono', monospace;
+      font-size: 9px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--ink2);
+    }
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      min-width: 0;
+    }
+    .brand-mark {
+      width: 30px;
+      height: 30px;
+      display: grid;
+      place-items: center;
+      background: var(--pink);
+      color: white;
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
+      font-weight: 900;
+      font-size: 16px;
+      flex: 0 0 auto;
+    }
+    .brand-name {
+      font-size: 16px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      font-weight: 900;
+      color: var(--cream);
+      white-space: nowrap;
+    }
+    .hero {
+      display: grid;
+      gap: 16px;
+      margin-top: 8px;
+    }
+    .panel {
+      background: linear-gradient(180deg, rgba(20,19,28,0.95), rgba(15,14,22,0.98));
+      border: 1px solid var(--ink3);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      overflow: hidden;
+      position: relative;
+    }
+    .panel::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at top right, rgba(255,92,122,0.12), transparent 28%);
+      pointer-events: none;
+    }
+    .hero-main { padding: 24px 20px 22px; }
+    .eyebrow {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 18px;
+      font-family: 'DM Mono', monospace;
+      font-size: 9px;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--ink2);
+    }
+    .eyebrow::before {
+      content: '';
+      width: 22px;
+      height: 1px;
+      background: var(--pink);
+      flex: 0 0 auto;
+    }
+    .title-block { margin-bottom: 22px; position: relative; z-index: 1; }
+    .title-main {
+      font-size: clamp(56px, 17vw, 112px);
+      line-height: 0.88;
+      text-transform: uppercase;
+      font-weight: 900;
+      color: var(--cream);
+      letter-spacing: -0.04em;
+    }
+    .title-sub {
+      display: block;
+      margin-left: 18px;
+      margin-top: 4px;
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
+      font-size: clamp(40px, 12vw, 78px);
+      line-height: 0.9;
+      color: var(--pink);
+      font-weight: 900;
+      letter-spacing: -0.02em;
+    }
+    .title-ghost {
+      display: block;
+      margin-top: 6px;
+      font-size: clamp(44px, 12vw, 90px);
+      line-height: 0.9;
+      text-transform: uppercase;
+      font-weight: 900;
+      letter-spacing: -0.04em;
+      -webkit-text-stroke: 1px rgba(232,226,217,0.16);
+      color: transparent;
+    }
+    .intro {
+      display: grid;
+      gap: 14px;
+      margin-top: 8px;
+      position: relative;
+      z-index: 1;
+    }
+    .intro-copy {
+      max-width: 34ch;
+      font-size: 18px;
+      line-height: 1.3;
+      color: var(--ink2);
+    }
+    .intro-copy strong {
+      color: var(--cream);
+      font-weight: 700;
+      letter-spacing: 0.03em;
+      text-transform: uppercase;
+    }
+    .button-row {
+      display: grid;
+      gap: 10px;
+      margin-top: 6px;
+    }
+    button {
+      appearance: none;
+      border: none;
+      cursor: pointer;
+      border-radius: 18px;
+      transition: transform 0.15s ease, background 0.15s ease, border-color 0.15s ease, color 0.15s ease;
+    }
+    button:hover { transform: translateY(-1px); }
+    button:active { transform: translateY(1px) scale(0.99); }
+    .btn-primary {
+      background: var(--pink);
+      color: white;
+      padding: 17px 18px;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 15px;
+      font-weight: 800;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .btn-primary:hover { background: var(--pink-dark); }
+    .btn-secondary {
+      background: transparent;
+      color: var(--ink2);
+      padding: 15px 18px;
+      border: 1px solid var(--ink3);
+      font-family: 'DM Mono', monospace;
+      font-size: 9px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .btn-secondary:hover {
+      color: var(--pink);
+      border-color: rgba(255,92,122,0.45);
+    }
+    .result-wrap { display: grid; gap: 16px; }
+    .terminal {
+      background: var(--bg3);
+      border: 1px solid var(--ink3);
+      border-radius: 22px;
+      overflow: hidden;
+    }
+    .term-bar {
+      padding: 11px 14px;
+      border-bottom: 1px solid var(--ink3);
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      background: var(--bg2);
+    }
+    .term-dot { width: 8px; height: 8px; border-radius: 50%; }
+    .term-title {
+      margin-left: 4px;
+      font-family: 'DM Mono', monospace;
+      font-size: 9px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--ink2);
+    }
+    .term-body {
+      padding: 18px 16px 19px;
+      font-family: 'DM Mono', monospace;
+      font-size: 11px;
+      line-height: 1.8;
+      color: var(--ink2);
+    }
+    .term-body .pink { color: var(--pink); }
+    .term-body .indigo { color: var(--indigo); }
+    .term-body .cream { color: var(--cream); }
+    .episode-card {
+      padding: 20px;
+      background: linear-gradient(180deg, rgba(10,9,15,0.94), rgba(20,19,28,0.96));
+      border: 1px solid var(--ink3);
+      border-radius: 24px;
+      position: relative;
+      overflow: hidden;
+    }
+    .episode-card::before {
+      content: attr(data-case);
+      position: absolute;
+      right: 14px;
+      bottom: -10px;
+      font-size: clamp(64px, 24vw, 120px);
+      line-height: 1;
+      font-weight: 900;
+      letter-spacing: -0.05em;
+      color: rgba(232,226,217,0.04);
+      pointer-events: none;
+    }
+    .card-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 14px;
+      margin-bottom: 18px;
+      position: relative;
+      z-index: 1;
+    }
+    .case-label {
+      font-family: 'DM Mono', monospace;
+      font-size: 9px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--ink2);
+    }
+    .live-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      padding: 7px 11px;
+      border: 1px solid var(--ink3);
+      border-radius: 999px;
+      font-family: 'DM Mono', monospace;
+      font-size: 8px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--ink2);
+      white-space: nowrap;
+    }
+    .live-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--pink);
+      box-shadow: 0 0 10px var(--pink);
+      animation: blink-soft 2s ease-in-out infinite;
+    }
+    .episode-number {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 20px;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--pink);
+      margin-bottom: 4px;
+      position: relative;
+      z-index: 1;
+    }
+    .episode-title {
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
+      font-weight: 900;
+      font-size: clamp(28px, 8vw, 44px);
+      line-height: 1.08;
+      color: var(--cream);
+      margin-bottom: 16px;
+      position: relative;
+      z-index: 1;
+      max-width: 12ch;
+    }
+    .episode-meta {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 10px;
+      margin-bottom: 14px;
+      position: relative;
+      z-index: 1;
+    }
+    .meta-box {
+      background: var(--ink4);
+      border: 1px solid var(--ink3);
+      border-radius: 18px;
+      padding: 13px 12px 12px;
+      min-height: 84px;
+    }
+    .meta-label {
+      font-family: 'DM Mono', monospace;
+      font-size: 8px;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--ink2);
+      margin-bottom: 8px;
+    }
+    .meta-value {
+      color: var(--cream);
+      font-size: 24px;
+      line-height: 0.95;
+      font-weight: 900;
+      letter-spacing: -0.03em;
+    }
+    .meta-value.small {
+      font-size: 18px;
+      line-height: 1.12;
+      letter-spacing: 0.01em;
+      font-weight: 700;
+    }
+
+    .meta-select-wrap {
+      position: relative;
+      z-index: 1;
+      margin-top: 14px;
+    }
+
+    .category-select {
+      width: 100%;
+      appearance: none;
+      background: var(--ink4);
+      color: var(--cream);
+      border: 1px solid var(--ink3);
+      border-radius: 16px;
+      padding: 14px 16px;
+      font-family: 'DM Mono', monospace;
+      font-size: 11px;
+      letter-spacing: 0.06em;
+      text-transform: lowercase;
+      outline: none;
+    }
+
+    .category-select:focus {
+      border-color: rgba(255,92,122,0.45);
+      box-shadow: 0 0 0 3px rgba(255,92,122,0.08);
+    }
+
+    .category-hint {
+      margin-top: 10px;
+      font-family: 'DM Mono', monospace;
+      font-size: 8px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--ink2);
+    }
+
+    .episode-description {
+      font-size: 16px;
+      line-height: 1.45;
+      color: var(--ink2);
+      max-width: 42ch;
+      position: relative;
+      z-index: 1;
+    }
+    .footer-note {
+      margin-top: 18px;
+      padding-top: 16px;
+      border-top: 1px solid var(--ink3);
+      display: flex;
+      justify-content: space-between;
+      gap: 10px;
+      align-items: center;
+      flex-wrap: wrap;
+      position: relative;
+      z-index: 1;
+    }
+    .helper {
+      font-family: 'DM Mono', monospace;
+      font-size: 8px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--ink2);
+    }
+    .mini-stats {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 1px;
+      background: var(--ink3);
+      border: 1px solid var(--ink3);
+      border-radius: 22px;
+      overflow: hidden;
+    }
+    .mini-stat { background: var(--bg2); padding: 16px 14px; }
+    .mini-stat-number {
+      color: var(--pink);
+      font-size: 28px;
+      line-height: 1;
+      font-weight: 900;
+      letter-spacing: -0.04em;
+      margin-bottom: 4px;
+    }
+    .mini-stat-label {
+      font-family: 'DM Mono', monospace;
+      font-size: 8px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--ink2);
+      line-height: 1.5;
+    }
+    .info-panel { padding: 20px; display: grid; gap: 18px; }
+    .section-label {
+      font-family: 'DM Mono', monospace;
+      font-size: 9px;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--ink2);
+    }
+    .idea-copy {
+      font-size: 17px;
+      line-height: 1.4;
+      color: var(--ink2);
+      max-width: 40ch;
+    }
+    .idea-copy strong {
+      color: var(--cream);
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      font-weight: 700;
+    }
+    .tag-row { display: flex; flex-wrap: wrap; gap: 8px; }
+    .tag {
+      border: 1px solid var(--ink3);
+      border-radius: 999px;
+      padding: 7px 11px;
+      font-family: 'DM Mono', monospace;
+      font-size: 8px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--ink2);
+    }
+    .tag.active {
+      border-color: rgba(255,92,122,0.45);
+      color: var(--pink);
+      background: var(--pink-dim);
+    }
+    .install-note {
+      border-top: 1px solid var(--ink3);
+      padding-top: 16px;
+      display: grid;
+      gap: 8px;
+    }
+    .install-note p { color: var(--ink2); font-size: 14px; line-height: 1.45; }
+    .colophon {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+      padding: 18px 2px 8px;
+      margin-top: 16px;
+      flex-wrap: wrap;
+    }
+    @keyframes blink-soft {
+      0%,100% { opacity: 1; }
+      50% { opacity: 0.22; }
+    }
+    @media (min-width: 760px) {
+      .shell { padding: 30px 26px 48px; }
+      .hero { grid-template-columns: 1.25fr 0.9fr; align-items: stretch; }
+      .hero-main { padding: 30px 28px 28px; }
+      .info-panel { padding: 24px; }
+      .button-row { grid-template-columns: 1fr; max-width: 360px; }
+      .result-wrap { height: 100%; }
+    }
+    @media (max-width: 420px) {
+      .topbar > .mono:first-child, .topbar > .mono:last-child { display: none; }
+      .topbar { justify-content: center; }
+      .episode-meta { grid-template-columns: 1fr; }
+      .mini-stats { grid-template-columns: 1fr; }
+      .episode-title { max-width: 100%; }
+    }
+  </style>
+</head>
+<body>
+  <main class="shell">
+    <header class="topbar">
+      <span class="mono">Random Player · Night Mode</span>
+      <div class="brand" aria-label="App Name">
+        <div class="brand-mark">?</div>
+        <div class="brand-name">Nachtarchiv</div>
+      </div>
+      <span class="mono">Fall für die Nacht</span>
+    </header>
+
+    <section class="hero">
+      <article class="panel hero-main">
+        <div class="eyebrow">Die drei ??? · Zufallsgenerator · Einschlafen</div>
+
+        <div class="title-block">
+          <div class="title-main">Nacht</div>
+          <span class="title-sub">archiv.</span>
+          <span class="title-ghost">Zufallsfall</span>
+        </div>
+
+        <div class="intro">
+          <p class="intro-copy">
+            Für maximales Einschlaferlebnis oder quicken Rollerskate um den See jederzeit hier würfeln hihi, liebe Grüße Lillimaus.
+          </p>
+
+          <div class="button-row">
+            <button class="btn-primary" id="randomizeBtn" type="button">
+              Zufällige Folge
+              <span>→</span>
+            </button>
+            <button class="btn-secondary" id="rerollBtn" type="button">
+              Nochmal würfeln
+              <span>↻</span>
+            </button>
+          </div>
+        </div>
+      </article>
+
+      <aside class="result-wrap">
+        <div class="terminal" aria-hidden="true">
+          <div class="term-bar">
+            <span class="term-dot" style="background:#FF5C7A"></span>
+            <span class="term-dot" style="background:#6366F1"></span>
+            <span class="term-dot" style="background:rgba(232,226,217,0.2)"></span>
+            <span class="term-title">nachtarchiv · current-case</span>
+          </div>
+          <div class="term-body">
+            <div>// probing archive…</div>
+            <div><span class="pink">source</span>: hauptfolgen 001-239</div>
+            <div><span class="pink">mode</span>: random night pick</div>
+            <div><span class="pink">status</span>: <span class="cream">bereit</span></div>
+            <div>&nbsp;</div>
+            <div><span class="indigo">→</span> press button to draw a case</div>
+          </div>
+        </div>
+
+        <section class="episode-card" id="episodeCard" data-case="001">
+          <div class="card-top">
+            <div class="case-label">// Current Case</div>
+            <div class="live-badge"><span class="live-dot"></span> bereit</div>
+          </div>
+
+          <div class="episode-number" id="episodeNumber">Folge 001</div>
+          <h1 class="episode-title" id="episodeTitle">Die drei ??? und der Super-Papagei</h1>
+
+          <div class="episode-meta">
+            <div class="meta-box">
+              <div class="meta-label">Ära</div>
+              <div class="meta-value small" id="episodeEra">TBD</div>
+            </div>
+            <div class="meta-box">
+              <div class="meta-label">Kategorie</div>
+              <div class="meta-value small" id="episodeCategoryLabel">noch offen</div>
+            </div>
+          </div>
+
+          <div class="meta-select-wrap">
+            <select class="category-select" id="categorySelect" aria-label="Folge kategorisieren">
+              <option value="">kategorie wählen</option>
+              <option value="vanilla">vanilla</option>
+              <option value="gruselig">gruselig</option>
+              <option value="ungelöst">ungelöst</option>
+              <option value="inspector cotter">inspector cotter</option>
+              <option value="langweilig">langweilig</option>
+              <option value="verwirrender plot">verwirrender plot</option>
+              <option value="top tier">top tier</option>
+            </select>
+            <div class="category-hint">lokal auf deinem gerät gespeichert</div>
+          </div>
+
+          <p class="episode-description" id="episodeDescription">
+            Noch ohne Notiz.
+          </p>
+
+          <div class="footer-note">
+            <span class="helper" id="episodeStatus">shuffle bereit · folge 001</span>
+            <span class="helper">239 hauptfolgen geladen</span>
+          </div>
+        </section>
+
+        <div class="mini-stats" aria-label="App Stats">
+          <div class="mini-stat">
+            <div class="mini-stat-number" id="episodeCount">239</div>
+            <div class="mini-stat-label">Hauptfolgen</div>
+          </div>
+          <div class="mini-stat">
+            <div class="mini-stat-number">∞</div>
+            <div class="mini-stat-label">Neu würfeln</div>
+          </div>
+          <div class="mini-stat">
+            <div class="mini-stat-number">live</div>
+            <div class="mini-stat-label">nachtmodus</div>
+          </div>
+        </div>
+      </aside>
+    </section>
+
+    <section class="panel info-panel">
+      <div class="section-label">// Nachtarchiv</div>
+      <p class="idea-copy">
+        Hier bitte Folgen würfeln, speichern und nach Gefühl einordnen. Nachtarchiv hält deine Kategorien direkt auf deinem Gerät fest.
+      </p>
+
+      <div class="tag-row">
+        <span class="tag active">random</span>
+        <span class="tag">ära</span>
+        <span class="tag">kategorien</span>
+        <span class="tag">beschreibung</span>
+        <span class="tag">lokal gespeichert</span>
+      </div>
+
+      <div class="install-note">
+        <div class="section-label">// iPhone</div>
+        <p>
+          Hier bitte in Safari öffnen und zum Home-Bildschirm hinzufügen, damit sich Nachtarchiv wie eine kleine App anfühlt.
+        </p>
+      </div>
+    </section>
+
+    <footer class="colophon">
+      <div class="brand">
+        <div class="brand-mark">?</div>
+        <div class="brand-name">Nachtarchiv</div>
+      </div>
+      <span class="mono">Nachtarchiv</span>
+    </footer>
+  </main>
+
+  <script>
+    const episodes = [
+  {
+    "number": 1,
+    "title": "Die drei ??? und der Super-Papagei",
+    "era": "Die Klassiker",
+    "spookiness": 0,
+    "description": "Noch ohne Notiz."
+  },
+  {
+    "number": 2,
+    "title": "Die drei ??? und der Phantomsee",
+    "era": "Die Klassiker",
+    "spookiness": 0,
+    "description": "Noch ohne Notiz."
+  },
+  {
+    "number": 3,
+    "title": "Die drei ??? und der Karpatenhund",
+    "era": "Die Klassiker",
+    "spookiness": 0,
+    "description": "Noch ohne Notiz."
+  },
+  {
+    "number": 4,
+    "title": "Die drei ??? und die schwarze Katze",
+    "era": "Die Klassiker",
+    "spookiness": 0,
+    "description": "Noch ohne Notiz."
+  },
+  {
+    "number": 5,
+    "title": "Die drei ??? und der Fluch des Rubins",
+    "era": "Die Klassiker",
+    "spookiness": 0,
+    "description": "Noch ohne Notiz."
+  },
+  {
+    "number": 6,
+    "title": "Die drei ??? und der sprechende Totenkopf",
+    "era": "Die Klassiker",
+    "spookiness": 0,
+    "description": "Noch ohne Notiz."
+  },
+  {
+    "number": 7,
+    "title": "Die drei ??? und der unheimliche Drache",
+    "era": "Die Klassiker",
+    "spookiness": 0,
+    "description": "Noch ohne Notiz."
+  },
+  {
+    "number": 8,
+    "title": "Die drei ??? und der grüne Geist",
+    "era": "Die Klassiker",
+    "spookiness": 0,
+    "description": "Noch ohne Notiz."
+  },
+  {
+    "number": 9,
+    "title": "Die drei ??? und die rätselhaften Bilder",
+    "era": "Die Klassiker",
+    "spookiness": 0,
+    "description": "Noch ohne Notiz."
+  },
+  {
+    "number": 10,
+    "title": "Die drei ??? und die flüsternde Mumie",
+    "era": "Die Klassiker",
+    "spookiness": 0,
+    "description": "Noch ohne Notiz."
+  },
+  {
+    "number": 11,
+    "title": "Die drei ??? und das Gespensterschloß",
+    "era": "Die Klassiker",
+    "spookiness": 0,
+    "description": "Noch ohne Notiz."
+  },
+  {
+    "number": 12,
+    "title": "Die drei ??? und der seltsame Wecker",
+    "era": "Die Klassiker",
+    "spookiness": 0,
+    "description": "Noch ohne Notiz."
+  },
+  {
+    "number": 13,
+    "title": "Die drei ??? und der lachende Schatten",
+    "era": "Die Klassiker",
+    "spookiness": 0,
+    "description": "Noch ohne Notiz."
+  },
+  {
+    "number": 14,
+    "title": "Die drei ??? und das Bergmonster",
+    "era": "Die Klassiker",
+    "spookiness": 0,
+    "description": "Noch ohne Notiz."
+  },
+  {
+    "number": 15,
+    "title": "Die drei ??? und der rasende Löwe",
+    "era": "Die Klassiker",
+    "spookiness": 0,
+    "description": "Noch ohne Notiz."
+  },
+  {
+    "number": 16,
+    "title": "Die drei ??? und der Zauberspiegel",
+    "era": "Die Klassiker",
+    "spookiness": 0,
+    "description": "Noch ohne Notiz."
+  },
+  {
+    "number": 17,
+    "title": "Die drei ??? und die gefährliche Erbschaft",
+    "era": "Die Klassiker",
+    "spookiness": 0,
+    "description": "Noch ohne Notiz."
+  },
+  {
+    "number": 18,
+    "title": "Die drei ??? und die Geisterinsel",
+    "era": "Die Klassiker",
+    "spookiness": 0,
+    "description": "Noch ohne Notiz."
+  },
+  {
+    "number": 19,
+    "title": "Die drei ??? und der Teufelsberg",
+    "era": "Die Klassiker",
+    "spookiness": 0,
+    "description": "Noch ohne Notiz."
+  },
+  {
+    "number": 20,
+    "title": "Die drei ??? und die flammende Spur",
+    "era": "Die Klassiker",
+    "spookiness": 0,
+    "description": "Noch ohne Notiz."
+  },
+  {
+    "number": 21,
+    "title": "Die drei ??? und der tanzende Teufel",
+    "era": "Die Klassiker",
+    "spookiness": 0,
+    "description": "Noch ohne Notiz."
+  },
+  {
+    "number": 22,
+    "title": "Die drei ??? und der verschwundene Schatz",
+    "era": "Die Klassiker",
+    "spookiness": 0,
+    "description": "Noch ohne Notiz."
+  },
+  {
+    "number": 23,
+    "title": "Die drei ??? und das Aztekenschwert",
+    "era": "Die Klassiker",
+    "spookiness": 0,
+    "description": "Noch ohne Notiz."
+  },
+  {
+    "number": 24,
+    "title": "Die drei ??? und die silberne Spinne",
+    "era": "Die Klassiker",
+    "spookiness": 0,
+    "description": "Noch ohne Notiz."
+  },
+  {
+    "number": 25,
+    "title": "Die drei ??? und die singende Schlange",
+    "era": "Die Klassiker",
+    "spookiness": 0,
+    "description": "Noch ohne Notiz."
+  },
+  {
+    "number": 26,
+    "title": "Die drei ??? und die Silbermine",
+    "era": "Die Klassiker",
+    "spookiness": 0,
+    "description": "Noch ohne Notiz."
+  },
+  {
+    "number": 27,
+    "title": "Die drei ??? und der magische Kreis",
+    "era": "Die Klassiker",
+    "spookiness": 0,
+    "description": "Noch ohne Notiz."
+  },
+  {
+    "number": 28,
+    "title": "Die drei ??? und der Doppelgänger",
+    "era": "Die Klassiker",
+    "spookiness": 0,
+    "description": "Noch ohne Notiz."
+  },
+  {
+    "number": 29,
+    "title": "Die drei ??? Die Originalmusik",
+    "era": "Die Klassiker",
+    "spookiness": 0,
+    "description": "Noch ohne Notiz."
+  },
+  {
+    "number": 30,
+    "title": "Die drei ??? und das Riff der Haie",
+    "era": "Die Klassiker",
+    "spookiness": 0,
+    "description": "Noch ohne Notiz."
+  },
+  {
+    "number": 31,
+    "title": "Die drei ??? und das Narbengesicht",
+    "era": "Die Klassiker",
+    "spookiness": 0,
+    "description": "Noch ohne Notiz."
+  },
+  {
+    "number": 32,
+    "title": "Die drei ??? und der Ameisenmensch",
+    "era": "Die Klassiker",
+    "spookiness": 0,
+    "description": "Noch ohne Notiz."
+  },
+  {
+    "number": 33,
+    "title": "Die drei ??? und die bedrohte Ranch",
+    "era": "Die Klassiker",
+    "spookiness": 0,
+    "description": "Noch ohne Notiz."
+  },
+  {
+    "number": 34,
+    "title": "Die drei ??? und der rote Pirat",
+    "era": "Die Klassiker",
+    "spookiness": 0,
+    "description": "Noch ohne Notiz."
+  },
+  {
+    "number": 35,
+    "title": "Die drei ??? und der Höhlenmensch",
+    "era": "Die Klassiker",
+    "spookiness": 0,
+    "description": "Noch ohne Notiz."
+  },
+  {
+    "number": 36,
+    "title": "Die drei ??? und der Super-Wal",
+    "era": "Die Klassiker",
+    "spookiness": 0,
+    "description": "Noch ohne Notiz."
+  },
+  {
+    "number": 37,
+    "title": "Die drei ??? und der heimliche Hehler",
+    "era": "Die Klassiker",
+    "spookiness": 0,
+    "description": "Noch ohne Notiz."
+  },
+  {
+    "number": 38,
+    "title": "Die drei ??? und der unsichtbare Gegner",
+    "era": "Die Klassiker",
+    "spookiness": 0,
+    "description": "Noch ohne Notiz."
+  },
+  {
+    "number": 39,
+    "title": "Die drei ??? und die Perlenvögel",
+    "era": "Die Klassiker",
+    "spookiness": 0,
+    "description": "Noch ohne Notiz."
+  },
+  {
+    "number": 40,
+    "title": "Die drei ??? und der Automarder",
+    "era": "Die Klassiker",
+    "spookiness": 0,
+    "description": "Noch ohne Notiz."
+  },
+  {
+    "number": 41,
+    "title": "Die drei ??? und das Volk der Winde",
+    "era": "Die Klassiker",
+    "spookiness": 0,
+    "description": "Noch ohne Notiz."
+  },
+  {
+    "number": 42,
+    "title": "Die drei ??? und der weinende Sarg",
+    "era": "Die Klassiker",
+    "spookiness": 0,
+    "description": "Noch ohne Notiz."
+  },
+  {
+    "number": 43,
+    "title": "Die drei ??? und der höllische Werwolf",
+    "era": "Die Klassiker",
+    "spookiness": 0,
+    "description": "Noch ohne Notiz."
+  },
+  {
+    "number": 44,
+    "title": "Die drei ??? und der gestohlene Preis",
+    "era": "Die Klassiker",
+    "spookiness": 0,
+    "description": "Noch ohne Notiz."
+  },
+  {
+    "number": 45,
+    "title": "Die drei ??? und das Gold der Wikinger",
+    "era": "Die Klassiker",
+    "spookiness": 0,
+    "description": "Noch ohne Notiz."
+  },
+  {
+    "number": 46,
+    "title": "Die drei ??? und der schrullige Millionär",
+    "era": "Die Klassiker",
+    "spookiness": 0,
+    "description": "Noch ohne Notiz."
+  },
+  {
+    "number": 47,
+    "title": "Die drei ??? und der giftige Gockel",
+    "era": "Crimebusters",
+    "spookiness": 0,
+    "description": "Noch ohne Notiz."
+  },
+  {
+    "number": 48,
+    "title": "Die drei ??? und die gefährlichen Fässer",
+    "era": "Crimebusters",
+    "spookiness": 0,
+    "description": "Noch ohne Notiz."
+  },
+  {
+    "number": 49,
+    "title": "Die drei ??? und die Comic-Diebe",
+    "era": "Crimebusters",
+    "spookiness": 0,
+    "description": "Noch ohne Notiz."
+  },
+  {
+    "number": 50,
+    "title": "Die drei ??? und der verschwundene Filmstar",
+    "era": "Crimebusters",
+    "spookiness": 0,
+    "description": "Noch ohne Notiz."
+  },
+  {
+    "number": 51,
+    "title": "Die drei ??? und der riskante Ritt",
+    "era": "Crimebusters",
+    "spookiness": 0,
+    "description": "Noch ohne Notiz."
+  },
+  {
+    "number": 52,
+    "title": "Die drei ??? und die Musikpiraten",
+    "era": "Crimebusters",
+    "spookiness": 0,
+    "description": "Noch ohne Notiz."
+  },
+  {
+    "number": 53,
+    "title": "Die drei ??? und die Automafia",
+    "era": "Crimebusters",
+    "spookiness": 0,
+    "description": "Noch ohne Notiz."
+  },
+  {
+    "number": 54,
+    "title": "Die drei ??? Gefahr im Verzug",
+    "era": "Crimebusters",
+    "spookiness": 0,
+    "description": "Noch ohne Notiz."
+  },
+  {
+    "number": 55,
+    "title": "Die drei ??? Gekaufte Spieler",
+    "era": "Crimebusters",
+    "spookiness": 0,
+    "description": "Noch ohne Notiz."
+  },
+  {
+    "number": 56,
+    "title": "Die drei ??? Angriff der Computer-Viren",
+    "era": "Crimebusters",
+    "spookiness": 0,
+    "description": "Noch ohne Notiz."
+  },
+  {
+    "number": 57,
+    "title": "Die drei ??? Tatort Zirkus",
+    "era": "Die ersten deutschen Vorlagen",
+    "spookiness": 0,
+    "description": "Noch ohne Notiz."
+  },
+  {
+    "number": 58,
+    "title": "Die drei ??? und der verrückte Maler",
+    "era": "Die ersten deutschen Vorlagen",
+    "spookiness": 0,
+    "description": "Noch ohne Notiz."
+  },
+  {
+    "number": 59,
+    "title": "Die drei ??? Giftiges Wasser",
+    "era": "Die ersten deutschen Vorlagen",
+    "spookiness": 0,
+    "description": "Noch ohne Notiz."
+  },
+  {
+    "number": 60,
+    "title": "Die drei ??? Dopingmixer",
+    "era": "Die ersten deutschen Vorlagen",
+    "spookiness": 0,
+    "description": "Noch ohne Notiz."
+  },
+  {
+    "number": 61,
+    "title": "Die drei ??? und die Rache des Tigers",
+    "era": "Die ersten deutschen Vorlagen",
+    "spookiness": 0,
+    "description": "Noch ohne Notiz."
+  },
+  {
+    "number": 62,
+    "title": "Die drei ??? Spuk im Hotel",
+    "era": "Die ersten deutschen Vorlagen",
+    "spookiness": 0,
+    "description": "Noch ohne Notiz."
+  },
+  {
+    "number": 63,
+    "title": "Die drei ??? Fußball-Gangster",
+    "era": "Die ersten deutschen Vorlagen",
+    "spookiness": 0,
+    "description": "Noch ohne Notiz."
+  },
+  {
+    "number": 64,
+    "title": "Die drei ??? Geisterstadt",
+    "era": "Die ersten deutschen Vorlagen",
+    "spookiness": 0,
+    "description": "Noch ohne Notiz."
+  },
+  {
+    "number": 65,
+    "title": "Die drei ??? Diamantenschmuggel",
+    "era": "Die ersten deutschen Vorlagen",
+    "spookiness": 0,
+    "description": "Noch ohne Notiz."
+  },
+  {
+    "number": 66,
+    "title": "Die drei ??? und die Schattenmänner",
+    "era": "Die ersten deutschen Vorlagen",
+    "spookiness": 0,
+    "description": "Noch ohne Notiz."
+  },
+  {
+    "number": 67,
+    "title": "Die drei ??? Geheimnis der Särge",
+    "era": "Die ersten deutschen Vorlagen",
+    "spookiness": 0,
+    "description": "Noch ohne Notiz."
+  },
+  {
+    "number": 68,
+    "title": "Die drei ??? Schatz im Bergsee",
+    "era": "Die ersten deutschen Vorlagen",
+    "spookiness": 0,
+    "description": "Noch ohne Notiz."
+  },
+  {
+    "number": 69,
+    "title": "Die drei ??? Späte Rache",
+    "era": "Die ersten deutschen Vorlagen",
+    "spookiness": 0,
+    "description": "Noch ohne Notiz."
+  },
+  {
+    "number": 70,
+    "title": "Die drei ??? Schüsse aus dem Dunkel",
+    "era": "Die ersten deutschen Vorlagen",
+    "spookiness": 0,
+    "description": "Noch ohne Notiz."
+  },
+  {
+    "number": 71,
+    "title": "Die drei ??? Die verschwundene Seglerin",
+    "era": "Die ersten deutschen Vorlagen",
+    "spookiness": 0,
+    "description": "Noch ohne Notiz."
+  },
+  {
+    "number": 72,
+    "title": "Die drei ??? Dreckiger Deal",
+    "era": "Die ersten deutschen Vorlagen",
+    "spookiness": 0,
+    "description": "Noch ohne Notiz."
+  },
+  {
+    "number": 73,
+    "title": "Die drei ??? Poltergeist",
+    "era": "Die Triumvirats-Ära",
+    "spookiness": 0,
+    "description": "Noch ohne Notiz."
+  },
+  {
+    "number": 74,
+    "title": "Die drei ??? und das brennende Schwert",
+    "era": "Die Triumvirats-Ära",
+    "spookiness": 0,
+    "description": "Noch ohne Notiz."
+  },
+  {
+    "number": 75,
+    "title": "Die drei ??? Die Spur des Raben",
+    "era": "Die Triumvirats-Ära",
+    "spookiness": 0,
+    "description": "Noch ohne Notiz."
+  },
+  {
+    "number": 76,
+    "title": "Die drei ??? Stimmen aus dem Nichts",
+    "era": "Die Triumvirats-Ära",
+    "spookiness": 0,
+    "description": "Noch ohne Notiz."
+  },
+  {
+    "number": 77,
+    "title": "Die drei ??? Pistenteufel",
+    "era": "Die Triumvirats-Ära",
+    "spookiness": 0,
+    "description": "Noch ohne Notiz."
+  },
+  {
+    "number": 78,
+    "title": "Die drei ??? Das leere Grab",
+    "era": "Die Triumvirats-Ära",
+    "spookiness": 0,
+    "description": "Noch ohne Notiz."
+  },
+  {
+    "number": 79,
+    "title": "Die drei ??? Im Bann des Voodoo",
+    "era": "Die Triumvirats-Ära",
+    "spookiness": 0,
+    "description": "Noch ohne Notiz."
+  },
+  {
+    "number": 80,
+    "title": "Die drei ??? Geheimakte Ufo",
+    "era": "Die Triumvirats-Ära",
+    "spookiness": 0,
+    "description": "Noch ohne Notiz."
+  },
+  {
+    "number": 81,
+    "title": "Die drei ??? Verdeckte Fouls",
+    "era": "Die Triumvirats-Ära",
+    "spookiness": 0,
+    "description": "Noch ohne Notiz."
+  },
+  {
+    "number": 82,
+    "title": "Die drei ??? Die Karten des Bösen",
+    "era": "Die Triumvirats-Ära",
+    "spookiness": 0,
+    "description": "Noch ohne Notiz."
+  },
+  {
+    "number": 83,
+    "title": "Die drei ??? Meuterei auf hoher See",
+    "era": "Die Triumvirats-Ära",
+    "spookiness": 0,
+    "description": "Noch ohne Notiz."
+  },
+  {
+    "number": 84,
+    "title": "Die drei ??? Musik des Teufels",
+    "era": "Die Triumvirats-Ära",
+    "spookiness": 0,
+    "description": "Noch ohne Notiz."
+  },
+  {
+    "number": 85,
+    "title": "Die drei ??? Feuerturm",
+    "era": "Die Triumvirats-Ära",
+    "spookiness": 0,
+    "description": "Noch ohne Notiz."
+  },
+  {
+    "number": 86,
+    "title": "Die drei ??? Nacht in Angst",
+    "era": "Die Triumvirats-Ära",
+    "spookiness": 0,
+    "description": "Noch ohne Notiz."
+  },
+  {
+    "number": 87,
+    "title": "Die drei ??? Wolfsgesicht",
+    "era": "Die Triumvirats-Ära",
+    "spookiness": 0,
+    "description": "Noch ohne Notiz."
+  },
+  {
+    "number": 88,
+    "title": "Die drei ??? Vampir im Internet",
+    "era": "Die Triumvirats-Ära",
+    "spookiness": 0,
+    "description": "Noch ohne Notiz."
+  },
+  {
+    "number": 89,
+    "title": "Die drei ??? Tödliche Spur",
+    "era": "Die Triumvirats-Ära",
+    "spookiness": 0,
+    "description": "Noch ohne Notiz."
+  },
+  {
+    "number": 90,
+    "title": "Die drei ??? Der Feuerteufel",
+    "era": "Die Triumvirats-Ära",
+    "spookiness": 0,
+    "description": "Noch ohne Notiz."
+  },
+  {
+    "number": 91,
+    "title": "Die drei ??? Labyrinth der Götter",
+    "era": "Die Triumvirats-Ära",
+    "spookiness": 0,
+    "description": "Noch ohne Notiz."
+  },
+  {
+    "number": 92,
+    "title": "Die drei ??? Todesflug",
+    "era": "Die Triumvirats-Ära",
+    "spookiness": 0,
+    "description": "Noch ohne Notiz."
+  },
+  {
+    "number": 93,
+    "title": "Die drei ??? und das Geisterschiff",
+    "era": "Die Triumvirats-Ära",
+    "spookiness": 0,
+    "description": "Noch ohne Notiz."
+  },
+  {
+    "number": 94,
+    "title": "Die drei ??? Das schwarze Monster",
+    "era": "Die Triumvirats-Ära",
+    "spookiness": 0,
+    "description": "Noch ohne Notiz."
+  },
+  {
+    "number": 95,
+    "title": "Die drei ??? Botschaft von Geisterhand",
+    "era": "Die Triumvirats-Ära",
+    "spookiness": 0,
+    "description": "Noch ohne Notiz."
+  },
+  {
+    "number": 96,
+    "title": "Die drei ??? und der rote Rächer",
+    "era": "Die Triumvirats-Ära",
+    "spookiness": 0,
+    "description": "Noch ohne Notiz."
+  },
+  {
+    "number": 97,
+    "title": "Die drei ??? Insektenstachel",
+    "era": "Die Triumvirats-Ära",
+    "spookiness": 0,
+    "description": "Noch ohne Notiz."
+  },
+  {
+    "number": 98,
+    "title": "Die drei ??? Tal des Schreckens",
+    "era": "Die Triumvirats-Ära",
+    "spookiness": 0,
+    "description": "Noch ohne Notiz."
+  },
+  {
+    "number": 99,
+    "title": "Die drei ??? Rufmord",
+    "era": "Die Triumvirats-Ära",
+    "spookiness": 0,
+    "description": "Noch ohne Notiz."
+  },
+  {
+    "number": 100,
+    "title": "Die drei ??? Toteninsel",
+    "era": "Die Triumvirats-Ära",
+    "spookiness": 0,
+    "description": "Noch ohne Notiz."
+  },
+  {
+    "number": 101,
+    "title": "Die drei ??? und das Hexenhandy",
+    "era": "Die Triumvirats-Ära",
+    "spookiness": 0,
+    "description": "Noch ohne Notiz."
+  },
+  {
+    "number": 102,
+    "title": "Die drei ??? Doppelte Täuschung",
+    "era": "Die Triumvirats-Ära",
+    "spookiness": 0,
+    "description": "Noch ohne Notiz."
+  },
+  {
+    "number": 103,
+    "title": "Die drei ??? Das Erbe des Meisterdiebs",
+    "era": "Die Triumvirats-Ära",
+    "spookiness": 0,
+    "description": "Noch ohne Notiz."
+  },
+  {
+    "number": 104,
+    "title": "Die drei ??? Gift per E-Mail",
+    "era": "Die Triumvirats-Ära",
+    "spookiness": 0,
+    "description": "Noch ohne Notiz."
+  },
+  {
+    "number": 105,
+    "title": "Die drei ??? und der Nebelberg",
+    "era": "Die Triumvirats-Ära",
+    "spookiness": 0,
+    "description": "Noch ohne Notiz."
+  },
+  {
+    "number": 106,
+    "title": "Die drei ??? Der Mann ohne Kopf",
+    "era": "Die Triumvirats-Ära",
+    "spookiness": 0,
+    "description": "Noch ohne Notiz."
+  },
+  {
+    "number": 107,
+    "title": "Die drei ??? und der Schatz der Mönche",
+    "era": "Die Triumvirats-Ära",
+    "spookiness": 0,
+    "description": "Noch ohne Notiz."
+  },
+  {
+    "number": 108,
+    "title": "Die drei ??? Die sieben Tore",
+    "era": "Die Triumvirats-Ära",
+    "spookiness": 0,
+    "description": "Noch ohne Notiz."
+  },
+  {
+    "number": 109,
+    "title": "Die drei ??? Gefährliches Quiz",
+    "era": "Die Triumvirats-Ära",
+    "spookiness": 0,
+    "description": "Noch ohne Notiz."
+  },
+  {
+    "number": 110,
+    "title": "Die drei ??? Panik im Park",
+    "era": "Die Triumvirats-Ära",
+    "spookiness": 0,
+    "description": "Noch ohne Notiz."
+  },
+  {
+    "number": 111,
+    "title": "Die drei ??? Die Höhle des Grauens",
+    "era": "Die Triumvirats-Ära",
+    "spookiness": 0,
+    "description": "Noch ohne Notiz."
+  },
+  {
+    "number": 112,
+    "title": "Die drei ??? Schlucht der Dämonen",
+    "era": "Die Triumvirats-Ära",
+    "spookiness": 0,
+    "description": "Noch ohne Notiz."
+  },
+  {
+    "number": 113,
+    "title": "Die drei ??? Das Auge des Drachen",
+    "era": "Die Triumvirats-Ära",
+    "spookiness": 0,
+    "description": "Noch ohne Notiz."
+  },
+  {
+    "number": 114,
+    "title": "Die drei ??? Die Villa der Toten",
+    "era": "Die Triumvirats-Ära",
+    "spookiness": 0,
+    "description": "Noch ohne Notiz."
+  },
+  {
+    "number": 115,
+    "title": "Die drei ??? Auf tödlichem Kurs",
+    "era": "Die Triumvirats-Ära",
+    "spookiness": 0,
+    "description": "Noch ohne Notiz."
+  },
+  {
+    "number": 116,
+    "title": "Die drei ??? Codename: Cobra",
+    "era": "Die Triumvirats-Ära",
+    "spookiness": 0,
+    "description": "Noch ohne Notiz."
+  },
+  {
+    "number": 117,
+    "title": "Die drei ??? Der finstere Rivale",
+    "era": "Die Triumvirats-Ära",
+    "spookiness": 0,
+    "description": "Noch ohne Notiz."
+  },
+  {
+    "number": 118,
+    "title": "Die drei ??? Das düstere Vermächtnis",
+    "era": "Die Triumvirats-Ära",
+    "spookiness": 0,
+    "description": "Noch ohne Notiz."
+  },
+  {
+    "number": 119,
+    "title": "Die drei ??? Der geheime Schlüssel",
+    "era": "Die Triumvirats-Ära",
+    "spookiness": 0,
+    "description": "Noch ohne Notiz."
+  },
+  {
+    "number": 120,
+    "title": "Die drei ??? Der schwarze Skorpion",
+    "era": "Die Neuzeit",
+    "spookiness": 0,
+    "description": "Noch ohne Notiz."
+  },
+  {
+    "number": 121,
+    "title": "Die drei ??? Spur ins Nichts",
+    "era": "Die Neuzeit",
+    "spookiness": 0,
+    "description": "Noch ohne Notiz."
+  },
+  {
+    "number": 122,
+    "title": "Die drei ??? und der Geisterzug",
+    "era": "Die Neuzeit",
+    "spookiness": 0,
+    "description": "Noch ohne Notiz."
+  },
+  {
+    "number": 123,
+    "title": "Die drei ??? Fußballfieber",
+    "era": "Die Neuzeit",
+    "spookiness": 0,
+    "description": "Noch ohne Notiz."
+  },
+  {
+    "number": 124,
+    "title": "Die drei ??? Geister-Canyon",
+    "era": "Die Neuzeit",
+    "spookiness": 0,
+    "description": "Noch ohne Notiz."
+  },
+  {
+    "number": 125,
+    "title": "Die drei ??? Feuermond",
+    "era": "Die Neuzeit",
+    "spookiness": 0,
+    "description": "Noch ohne Notiz."
+  },
+  {
+    "number": 126,
+    "title": "Die drei ??? Schrecken aus dem Moor",
+    "era": "Die Neuzeit",
+    "spookiness": 0,
+    "description": "Noch ohne Notiz."
+  },
+  {
+    "number": 127,
+    "title": "Die drei ??? Schwarze Madonna",
+    "era": "Die Neuzeit",
+    "spookiness": 0,
+    "description": "Noch ohne Notiz."
+  },
+  {
+    "number": 128,
+    "title": "Die drei ??? Schatten über Hollywood",
+    "era": "Die Neuzeit",
+    "spookiness": 0,
+    "description": "Noch ohne Notiz."
+  },
+  {
+    "number": 129,
+    "title": "Die drei ??? SMS aus dem Grab",
+    "era": "Die Neuzeit",
+    "spookiness": 0,
+    "description": "Noch ohne Notiz."
+  },
+  {
+    "number": 130,
+    "title": "Die drei ??? Der Fluch des Drachen",
+    "era": "Die Neuzeit",
+    "spookiness": 0,
+    "description": "Noch ohne Notiz."
+  },
+  {
+    "number": 131,
+    "title": "Die drei ??? Haus des Schreckens",
+    "era": "Die Neuzeit",
+    "spookiness": 0,
+    "description": "Noch ohne Notiz."
+  },
+  {
+    "number": 132,
+    "title": "Die drei ??? Spuk im Netz",
+    "era": "Die Neuzeit",
+    "spookiness": 0,
+    "description": "Noch ohne Notiz."
+  },
+  {
+    "number": 133,
+    "title": "Die drei ??? Fels der Dämonen",
+    "era": "Die Neuzeit",
+    "spookiness": 0,
+    "description": "Noch ohne Notiz."
+  },
+  {
+    "number": 134,
+    "title": "Die drei ??? Der tote Mönch",
+    "era": "Die Neuzeit",
+    "spookiness": 0,
+    "description": "Noch ohne Notiz."
+  },
+  {
+    "number": 135,
+    "title": "Die drei ??? Fluch des Piraten",
+    "era": "Die Neuzeit",
+    "spookiness": 0,
+    "description": "Noch ohne Notiz."
+  },
+  {
+    "number": 136,
+    "title": "Die drei ??? und das versunkene Dorf",
+    "era": "Die Neuzeit",
+    "spookiness": 0,
+    "description": "Noch ohne Notiz."
+  },
+  {
+    "number": 137,
+    "title": "Die drei ??? Pfad der Angst",
+    "era": "Die Neuzeit",
+    "spookiness": 0,
+    "description": "Noch ohne Notiz."
+  },
+  {
+    "number": 138,
+    "title": "Die drei ??? Die geheime Treppe",
+    "era": "Die Neuzeit",
+    "spookiness": 0,
+    "description": "Noch ohne Notiz."
+  },
+  {
+    "number": 139,
+    "title": "Die drei ??? Das Geheimnis der Diva",
+    "era": "Die Neuzeit",
+    "spookiness": 0,
+    "description": "Noch ohne Notiz."
+  },
+  {
+    "number": 140,
+    "title": "Die drei ??? Stadt der Vampire",
+    "era": "Die Neuzeit",
+    "spookiness": 0,
+    "description": "Noch ohne Notiz."
+  },
+  {
+    "number": 141,
+    "title": "Die drei ??? und die Fußball-Falle",
+    "era": "Die Neuzeit",
+    "spookiness": 0,
+    "description": "Noch ohne Notiz."
+  },
+  {
+    "number": 142,
+    "title": "Die drei ??? Tödliches Eis",
+    "era": "Die Neuzeit",
+    "spookiness": 0,
+    "description": "Noch ohne Notiz."
+  },
+  {
+    "number": 143,
+    "title": "Die drei ??? und die Poker-Hölle",
+    "era": "Die Neuzeit",
+    "spookiness": 0,
+    "description": "Noch ohne Notiz."
+  },
+  {
+    "number": 144,
+    "title": "Die drei ??? Zwillinge der Finsternis",
+    "era": "Die Neuzeit",
+    "spookiness": 0,
+    "description": "Noch ohne Notiz."
+  },
+  {
+    "number": 145,
+    "title": "Die drei ??? und die Rache der Samurai",
+    "era": "Die Neuzeit",
+    "spookiness": 0,
+    "description": "Noch ohne Notiz."
+  },
+  {
+    "number": 146,
+    "title": "Die drei ??? Der Biss der Bestie",
+    "era": "Die Neuzeit",
+    "spookiness": 0,
+    "description": "Noch ohne Notiz."
+  },
+  {
+    "number": 147,
+    "title": "Die drei ??? Grusel auf Campbell Castle",
+    "era": "Die Neuzeit",
+    "spookiness": 0,
+    "description": "Noch ohne Notiz."
+  },
+  {
+    "number": 148,
+    "title": "Die drei ??? und die feurige Flut",
+    "era": "Die Neuzeit",
+    "spookiness": 0,
+    "description": "Noch ohne Notiz."
+  },
+  {
+    "number": 149,
+    "title": "Die drei ??? Der namenlose Gegner",
+    "era": "Die Neuzeit",
+    "spookiness": 0,
+    "description": "Noch ohne Notiz."
+  },
+  {
+    "number": 150,
+    "title": "Die drei ??? Geisterbucht",
+    "era": "Die Neuzeit",
+    "spookiness": 0,
+    "description": "Noch ohne Notiz."
+  },
+  {
+    "number": 151,
+    "title": "Die drei ??? Schwarze Sonne",
+    "era": "Die Neuzeit",
+    "spookiness": 0,
+    "description": "Noch ohne Notiz."
+  },
+  {
+    "number": 152,
+    "title": "Die drei ??? Skateboardfieber",
+    "era": "Die Neuzeit",
+    "spookiness": 0,
+    "description": "Noch ohne Notiz."
+  },
+  {
+    "number": 153,
+    "title": "Die drei ??? und das Fußballphantom",
+    "era": "Die Neuzeit",
+    "spookiness": 0,
+    "description": "Noch ohne Notiz."
+  },
+  {
+    "number": 154,
+    "title": "Die drei ??? Botschaft aus der Unterwelt",
+    "era": "Die Neuzeit",
+    "spookiness": 0,
+    "description": "Noch ohne Notiz."
+  },
+  {
+    "number": 155,
+    "title": "Die drei ??? und der Meister des Todes",
+    "era": "Die Neuzeit",
+    "spookiness": 0,
+    "description": "Noch ohne Notiz."
+  },
+  {
+    "number": 156,
+    "title": "Die drei ??? Im Netz des Drachen",
+    "era": "Die Neuzeit",
+    "spookiness": 0,
+    "description": "Noch ohne Notiz."
+  },
+  {
+    "number": 157,
+    "title": "Die drei ??? Im Zeichen der Schlangen",
+    "era": "Die Neuzeit",
+    "spookiness": 0,
+    "description": "Noch ohne Notiz."
+  },
+  {
+    "number": 158,
+    "title": "Die drei ??? und der Feuergeist",
+    "era": "Die Neuzeit",
+    "spookiness": 0,
+    "description": "Noch ohne Notiz."
+  },
+  {
+    "number": 159,
+    "title": "Die drei ??? Nacht der Tiger",
+    "era": "Die Neuzeit",
+    "spookiness": 0,
+    "description": "Noch ohne Notiz."
+  },
+  {
+    "number": 160,
+    "title": "Die drei ??? Geheimnisvolle Botschaften",
+    "era": "Die Neuzeit",
+    "spookiness": 0,
+    "description": "Noch ohne Notiz."
+  },
+  {
+    "number": 161,
+    "title": "Die drei ??? Die blutenden Bilder",
+    "era": "Die Neuzeit",
+    "spookiness": 0,
+    "description": "Noch ohne Notiz."
+  },
+  {
+    "number": 162,
+    "title": "Die drei ??? und der schreiende Nebel",
+    "era": "Die Neuzeit",
+    "spookiness": 0,
+    "description": "Noch ohne Notiz."
+  },
+  {
+    "number": 163,
+    "title": "Die drei ??? und der verschollene Pilot",
+    "era": "Die Neuzeit",
+    "spookiness": 0,
+    "description": "Noch ohne Notiz."
+  },
+  {
+    "number": 164,
+    "title": "Die drei ??? Fußball-Teufel",
+    "era": "Die Neuzeit",
+    "spookiness": 0,
+    "description": "Noch ohne Notiz."
+  },
+  {
+    "number": 165,
+    "title": "Die drei ??? Im Schatten des Giganten",
+    "era": "Die Neuzeit",
+    "spookiness": 0,
+    "description": "Noch ohne Notiz."
+  },
+  {
+    "number": 166,
+    "title": "Die drei ??? und die brennende Stadt",
+    "era": "Die Neuzeit",
+    "spookiness": 0,
+    "description": "Noch ohne Notiz."
+  },
+  {
+    "number": 167,
+    "title": "Die drei ??? und das blaue Biest",
+    "era": "Die Neuzeit",
+    "spookiness": 0,
+    "description": "Noch ohne Notiz."
+  },
+  {
+    "number": 168,
+    "title": "Die drei ??? GPS-Gangster",
+    "era": "Die Neuzeit",
+    "spookiness": 0,
+    "description": "Noch ohne Notiz."
+  },
+  {
+    "number": 169,
+    "title": "Die drei ??? Die Spur des Spielers",
+    "era": "Die Neuzeit",
+    "spookiness": 0,
+    "description": "Noch ohne Notiz."
+  },
+  {
+    "number": 170,
+    "title": "Die drei ??? Straße des Grauens",
+    "era": "Die Neuzeit",
+    "spookiness": 0,
+    "description": "Noch ohne Notiz."
+  },
+  {
+    "number": 171,
+    "title": "Die drei ??? und das Phantom aus dem Meer",
+    "era": "Die Neuzeit",
+    "spookiness": 0,
+    "description": "Noch ohne Notiz."
+  },
+  {
+    "number": 172,
+    "title": "Die drei ??? und der Eisenmann",
+    "era": "Die Neuzeit",
+    "spookiness": 0,
+    "description": "Noch ohne Notiz."
+  },
+  {
+    "number": 173,
+    "title": "Die drei ??? Dämon der Rache",
+    "era": "Die Neuzeit",
+    "spookiness": 0,
+    "description": "Noch ohne Notiz."
+  },
+  {
+    "number": 174,
+    "title": "Die drei ??? und das Tuch der Toten",
+    "era": "Die Neuzeit",
+    "spookiness": 0,
+    "description": "Noch ohne Notiz."
+  },
+  {
+    "number": 175,
+    "title": "Die drei ??? Schattenwelt",
+    "era": "Die Neuzeit",
+    "spookiness": 0,
+    "description": "Noch ohne Notiz."
+  },
+  {
+    "number": 176,
+    "title": "Die drei ??? und der gestohlene Sieg",
+    "era": "Die Neuzeit",
+    "spookiness": 0,
+    "description": "Noch ohne Notiz."
+  },
+  {
+    "number": 177,
+    "title": "Die drei ??? Der Geist des Goldgräbers",
+    "era": "Die Neuzeit",
+    "spookiness": 0,
+    "description": "Noch ohne Notiz."
+  },
+  {
+    "number": 178,
+    "title": "Die drei ??? Der gefiederte Schrecken",
+    "era": "Die Neuzeit",
+    "spookiness": 0,
+    "description": "Noch ohne Notiz."
+  },
+  {
+    "number": 179,
+    "title": "Die drei ??? Die Rache des Untoten",
+    "era": "Die Neuzeit",
+    "spookiness": 0,
+    "description": "Noch ohne Notiz."
+  },
+  {
+    "number": 180,
+    "title": "Die drei ??? und die flüsternden Puppen",
+    "era": "Die Neuzeit",
+    "spookiness": 0,
+    "description": "Noch ohne Notiz."
+  },
+  {
+    "number": 181,
+    "title": "Die drei ??? Das Kabinett des Zauberers",
+    "era": "Die Neuzeit",
+    "spookiness": 0,
+    "description": "Noch ohne Notiz."
+  },
+  {
+    "number": 182,
+    "title": "Die drei ??? Im Haus des Henkers",
+    "era": "Die Neuzeit",
+    "spookiness": 0,
+    "description": "Noch ohne Notiz."
+  },
+  {
+    "number": 183,
+    "title": "Die drei ??? und der letzte Song",
+    "era": "Die Neuzeit",
+    "spookiness": 0,
+    "description": "Noch ohne Notiz."
+  },
+  {
+    "number": 184,
+    "title": "Die drei ??? und der Hexengarten",
+    "era": "Die Neuzeit",
+    "spookiness": 0,
+    "description": "Noch ohne Notiz."
+  },
+  {
+    "number": 185,
+    "title": "Die drei ??? und der Mann ohne Augen",
+    "era": "Die Neuzeit",
+    "spookiness": 0,
+    "description": "Noch ohne Notiz."
+  },
+  {
+    "number": 186,
+    "title": "Die drei ??? Insel des Vergessens",
+    "era": "Die Neuzeit",
+    "spookiness": 0,
+    "description": "Noch ohne Notiz."
+  },
+  {
+    "number": 187,
+    "title": "Die drei ??? und das silberne Amulett",
+    "era": "Die Neuzeit",
+    "spookiness": 0,
+    "description": "Noch ohne Notiz."
+  },
+  {
+    "number": 188,
+    "title": "Die drei ??? Signale aus dem Jenseits",
+    "era": "Die Neuzeit",
+    "spookiness": 0,
+    "description": "Noch ohne Notiz."
+  },
+  {
+    "number": 189,
+    "title": "Die drei ??? und der unsichtbare Passagier",
+    "era": "Die Neuzeit",
+    "spookiness": 0,
+    "description": "Noch ohne Notiz."
+  },
+  {
+    "number": 190,
+    "title": "Die drei ??? und die Kammer der Rätsel",
+    "era": "Die Neuzeit",
+    "spookiness": 0,
+    "description": "Noch ohne Notiz."
+  },
+  {
+    "number": 191,
+    "title": "Die drei ??? Verbrechen im Nichts",
+    "era": "Die Neuzeit",
+    "spookiness": 0,
+    "description": "Noch ohne Notiz."
+  },
+  {
+    "number": 192,
+    "title": "Die drei ??? Im Bann des Drachen",
+    "era": "Die Neuzeit",
+    "spookiness": 0,
+    "description": "Noch ohne Notiz."
+  },
+  {
+    "number": 193,
+    "title": "Die drei ??? Schrecken aus der Tiefe",
+    "era": "Die Neuzeit",
+    "spookiness": 0,
+    "description": "Noch ohne Notiz."
+  },
+  {
+    "number": 194,
+    "title": "Die drei ??? und die Zeitreisende",
+    "era": "Die Neuzeit",
+    "spookiness": 0,
+    "description": "Noch ohne Notiz."
+  },
+  {
+    "number": 195,
+    "title": "Die drei ??? Im Reich der Ungeheuer",
+    "era": "Die Neuzeit",
+    "spookiness": 0,
+    "description": "Noch ohne Notiz."
+  },
+  {
+    "number": 196,
+    "title": "Die drei ??? Geheimnis des Bauchredners",
+    "era": "Die Neuzeit",
+    "spookiness": 0,
+    "description": "Noch ohne Notiz."
+  },
+  {
+    "number": 197,
+    "title": "Die drei ??? Im Auge des Sturms",
+    "era": "Die Neuzeit",
+    "spookiness": 0,
+    "description": "Noch ohne Notiz."
+  },
+  {
+    "number": 198,
+    "title": "Die drei ??? Die Legende der Gaukler",
+    "era": "Die Neuzeit",
+    "spookiness": 0,
+    "description": "Noch ohne Notiz."
+  },
+  {
+    "number": 199,
+    "title": "Die drei ??? und der grüne Kobold",
+    "era": "Die Neuzeit",
+    "spookiness": 0,
+    "description": "Noch ohne Notiz."
+  },
+  {
+    "number": 200,
+    "title": "Die drei ??? Feuriges Auge",
+    "era": "Die Neuzeit",
+    "spookiness": 0,
+    "description": "Noch ohne Notiz."
+  },
+  {
+    "number": 201,
+    "title": "Die drei ??? Höhenangst",
+    "era": "Die Neuzeit",
+    "spookiness": 0,
+    "description": "Noch ohne Notiz."
+  },
+  {
+    "number": 202,
+    "title": "Die drei ??? Das weiße Grab",
+    "era": "Die Neuzeit",
+    "spookiness": 0,
+    "description": "Noch ohne Notiz."
+  },
+  {
+    "number": 203,
+    "title": "Die drei ??? Tauchgang ins Ungewisse",
+    "era": "Die Neuzeit",
+    "spookiness": 0,
+    "description": "Noch ohne Notiz."
+  },
+  {
+    "number": 204,
+    "title": "Die drei ??? Der dunkle Wächter",
+    "era": "Die Neuzeit",
+    "spookiness": 0,
+    "description": "Noch ohne Notiz."
+  },
+  {
+    "number": 205,
+    "title": "Die drei ??? Das rätselhafte Erbe",
+    "era": "Die Neuzeit",
+    "spookiness": 0,
+    "description": "Noch ohne Notiz."
+  },
+  {
+    "number": 206,
+    "title": "Die drei ??? und der Mottenmann",
+    "era": "Die Neuzeit",
+    "spookiness": 0,
+    "description": "Noch ohne Notiz."
+  },
+  {
+    "number": 207,
+    "title": "Die drei ??? Die falschen Detektive",
+    "era": "Die Neuzeit",
+    "spookiness": 0,
+    "description": "Noch ohne Notiz."
+  },
+  {
+    "number": 208,
+    "title": "Die drei ??? Kelch des Schicksals",
+    "era": "Die Neuzeit",
+    "spookiness": 0,
+    "description": "Noch ohne Notiz."
+  },
+  {
+    "number": 209,
+    "title": "Die drei ??? Kreaturen der Nacht",
+    "era": "Die Neuzeit",
+    "spookiness": 0,
+    "description": "Noch ohne Notiz."
+  },
+  {
+    "number": 210,
+    "title": "Die drei ??? und die schweigende Grotte",
+    "era": "Die Neuzeit",
+    "spookiness": 0,
+    "description": "Noch ohne Notiz."
+  },
+  {
+    "number": 211,
+    "title": "Die drei ??? und der Jadekönig",
+    "era": "Die Neuzeit",
+    "spookiness": 0,
+    "description": "Noch ohne Notiz."
+  },
+  {
+    "number": 212,
+    "title": "Die drei ??? und der weiße Leopard",
+    "era": "Die Neuzeit",
+    "spookiness": 0,
+    "description": "Noch ohne Notiz."
+  },
+  {
+    "number": 213,
+    "title": "Die drei ??? Der Fluch der Medusa",
+    "era": "Die Neuzeit",
+    "spookiness": 0,
+    "description": "Noch ohne Notiz."
+  },
+  {
+    "number": 214,
+    "title": "Die drei ??? und der Geisterbunker",
+    "era": "Die Neuzeit",
+    "spookiness": 0,
+    "description": "Noch ohne Notiz."
+  },
+  {
+    "number": 215,
+    "title": "Die drei ??? und die verlorene Zeit",
+    "era": "Die Neuzeit",
+    "spookiness": 0,
+    "description": "Noch ohne Notiz."
+  },
+  {
+    "number": 216,
+    "title": "Die drei ??? Die Schwingen des Unheils",
+    "era": "Die Neuzeit",
+    "spookiness": 0,
+    "description": "Noch ohne Notiz."
+  },
+  {
+    "number": 217,
+    "title": "Die drei ??? und der Kristallschädel",
+    "era": "Die Neuzeit",
+    "spookiness": 0,
+    "description": "Noch ohne Notiz."
+  },
+  {
+    "number": 218,
+    "title": "Die drei ??? Im Netz der Lügen",
+    "era": "Die Neuzeit",
+    "spookiness": 0,
+    "description": "Noch ohne Notiz."
+  },
+  {
+    "number": 219,
+    "title": "Die drei ??? und die Teufelsklippe",
+    "era": "Die Neuzeit",
+    "spookiness": 0,
+    "description": "Noch ohne Notiz."
+  },
+  {
+    "number": 220,
+    "title": "Die drei ??? Im Wald der Gefahren",
+    "era": "Die Neuzeit",
+    "spookiness": 0,
+    "description": "Noch ohne Notiz."
+  },
+  {
+    "number": 221,
+    "title": "Die drei ??? Manuskript des Satans",
+    "era": "Die Neuzeit",
+    "spookiness": 0,
+    "description": "Noch ohne Notiz."
+  },
+  {
+    "number": 222,
+    "title": "Die drei ??? und die Gesetzlosen",
+    "era": "Die Neuzeit",
+    "spookiness": 0,
+    "description": "Noch ohne Notiz."
+  },
+  {
+    "number": 223,
+    "title": "Die drei ??? und der Knochenmann",
+    "era": "Die Neuzeit",
+    "spookiness": 0,
+    "description": "Noch ohne Notiz."
+  },
+  {
+    "number": 224,
+    "title": "Die drei ??? Die Yacht des Verrats",
+    "era": "Die Neuzeit",
+    "spookiness": 0,
+    "description": "Noch ohne Notiz."
+  },
+  {
+    "number": 225,
+    "title": "Die drei ??? und der Puppenmacher",
+    "era": "Die Neuzeit",
+    "spookiness": 0,
+    "description": "Noch ohne Notiz."
+  },
+  {
+    "number": 226,
+    "title": "Die drei ??? Die Spur der Toten",
+    "era": "Die Neuzeit",
+    "spookiness": 0,
+    "description": "Noch ohne Notiz."
+  },
+  {
+    "number": 227,
+    "title": "Die drei ??? Melodie der Rache",
+    "era": "Die Neuzeit",
+    "spookiness": 0,
+    "description": "Noch ohne Notiz."
+  },
+  {
+    "number": 228,
+    "title": "Die drei ??? Der Ruf der Krähen",
+    "era": "Die Neuzeit",
+    "spookiness": 0,
+    "description": "Noch ohne Notiz."
+  },
+  {
+    "number": 229,
+    "title": "Die drei ??? Drehbuch der Täuschung",
+    "era": "Die Neuzeit",
+    "spookiness": 0,
+    "description": "Noch ohne Notiz."
+  },
+  {
+    "number": 230,
+    "title": "Die drei ??? Der Tag der Toten",
+    "era": "Die Neuzeit",
+    "spookiness": 0,
+    "description": "Noch ohne Notiz."
+  },
+  {
+    "number": 231,
+    "title": "Die drei ??? und der Dreiäugige Schakal",
+    "era": "Die Neuzeit",
+    "spookiness": 0,
+    "description": "Noch ohne Notiz."
+  },
+  {
+    "number": 232,
+    "title": "Die drei ??? Die Stadt aus Gold",
+    "era": "Die Neuzeit",
+    "spookiness": 0,
+    "description": "Noch ohne Notiz."
+  },
+  {
+    "number": 233,
+    "title": "Die drei ??? Die Nacht der Gewitter",
+    "era": "Die Neuzeit",
+    "spookiness": 0,
+    "description": "Noch ohne Notiz."
+  },
+  {
+    "number": 234,
+    "title": "Die drei ??? und der lebende Tresor",
+    "era": "Die Neuzeit",
+    "spookiness": 0,
+    "description": "Noch ohne Notiz."
+  },
+  {
+    "number": 235,
+    "title": "Die drei ??? und das Fantasmofon",
+    "era": "Die Neuzeit",
+    "spookiness": 0,
+    "description": "Noch ohne Notiz."
+  },
+  {
+    "number": 236,
+    "title": "Die drei ??? Im Bann des Barrakudas",
+    "era": "Die Neuzeit",
+    "spookiness": 0,
+    "description": "Noch ohne Notiz."
+  },
+  {
+    "number": 237,
+    "title": "Die drei ??? und der rote Büffel",
+    "era": "Die Neuzeit",
+    "spookiness": 0,
+    "description": "Noch ohne Notiz."
+  },
+  {
+    "number": 238,
+    "title": "Die drei ??? Falsche Schuld",
+    "era": "Die Neuzeit",
+    "spookiness": 0,
+    "description": "Noch ohne Notiz."
+  },
+  {
+    "number": 239,
+    "title": "Die drei ??? Das Geheimnis der sieben Palmen",
+    "era": "Die Neuzeit",
+    "spookiness": 0,
+    "description": "Noch ohne Notiz."
+  }
+];
+
+    const randomizeBtn = document.getElementById('randomizeBtn');
+    const rerollBtn = document.getElementById('rerollBtn');
+    const episodeCard = document.getElementById('episodeCard');
+    const episodeNumber = document.getElementById('episodeNumber');
+    const episodeTitle = document.getElementById('episodeTitle');
+    const episodeEra = document.getElementById('episodeEra');
+    const episodeCategoryLabel = document.getElementById('episodeCategoryLabel');
+    const categorySelect = document.getElementById('categorySelect');
+    const episodeDescription = document.getElementById('episodeDescription');
+    const episodeStatus = document.getElementById('episodeStatus');
+    const episodeCount = document.getElementById('episodeCount');
+
+    let lastIndex = -1;
+    let currentEpisode = null;
+    const categoryStorageKey = 'nachtarchiv-categories-live';
+    const storedCategories = JSON.parse(localStorage.getItem(categoryStorageKey) || '{}');
+    episodeCount.textContent = String(episodes.length);
+
+    function getCategory(number) {
+      return storedCategories[String(number)] || '';
+    }
+
+    function setCategory(number, value) {
+      if (!number) return;
+      if (value) {
+        storedCategories[String(number)] = value;
+      } else {
+        delete storedCategories[String(number)];
+      }
+      localStorage.setItem(categoryStorageKey, JSON.stringify(storedCategories));
+    }
+
+    function formatCategory(value) {
+      return value || 'noch offen';
+    }
+
+
+    function formatNumber(number) {
+      return String(number).padStart(3, '0');
+    }
+
+    function getRandomEpisode() {
+      if (episodes.length === 1) return { episode: episodes[0], index: 0 };
+
+      let index;
+      do {
+        index = Math.floor(Math.random() * episodes.length);
+      } while (index === lastIndex);
+
+      lastIndex = index;
+      return { episode: episodes[index], index };
+    }
+
+    function renderEpisode(episode) {
+      episodeCard.dataset.case = formatNumber(episode.number);
+      episodeNumber.textContent = `Folge ${formatNumber(episode.number)}`;
+      episodeTitle.textContent = episode.title;
+      currentEpisode = episode;
+      const savedCategory = getCategory(episode.number);
+      episodeEra.textContent = episode.era || 'TBD';
+      episodeCategoryLabel.textContent = formatCategory(savedCategory);
+      categorySelect.value = savedCategory;
+      episodeDescription.textContent = episode.description || 'Noch ohne Notiz.';
+      episodeStatus.textContent = `last draw · folge ${formatNumber(episode.number)}`;
+
+      episodeCard.animate(
+        [
+          { opacity: 0.65, transform: 'translateY(8px) scale(0.985)' },
+          { opacity: 1, transform: 'translateY(0) scale(1)' }
+        ],
+        {
+          duration: 280,
+          easing: 'cubic-bezier(0.16,1,0.3,1)'
+        }
+      );
+    }
+
+    function drawEpisode() {
+      const { episode } = getRandomEpisode();
+      renderEpisode(episode);
+    }
+
+    randomizeBtn.addEventListener('click', drawEpisode);
+    rerollBtn.addEventListener('click', drawEpisode);
+
+    categorySelect.addEventListener('change', (event) => {
+      if (!currentEpisode) return;
+      const value = event.target.value;
+      setCategory(currentEpisode.number, value);
+      episodeCategoryLabel.textContent = formatCategory(value);
+      episodeStatus.textContent = value
+        ? `gespeichert · ${value}`
+        : `kategorie entfernt · folge ${formatNumber(currentEpisode.number)}`;
+    });
+
+    renderEpisode(episodes[0]);
+  </script>
+</body>
+</html>
