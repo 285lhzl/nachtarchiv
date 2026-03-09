@@ -5,12 +5,15 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
   <title>Nachtarchiv</title>
   <meta name="theme-color" content="#0A090F" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="apple-mobile-web-app-title" content="Nachtarchiv" />
+  <meta name="description" content="Zufällige Die drei ???-Folge für die Nacht." />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,900;1,400;1,700;1,900&family=Barlow+Condensed:wght@300;400;600;700;800;900&family=DM+Mono:wght@300;400;500&display=swap" rel="stylesheet">
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
     :root {
       --pink: #FF5C7A;
       --pink-dark: #F0405E;
@@ -27,9 +30,7 @@
       --shadow: 0 20px 60px rgba(0,0,0,0.35);
       --radius: 26px;
     }
-
     html { scroll-behavior: smooth; }
-
     body {
       min-height: 100vh;
       background:
@@ -40,7 +41,6 @@
       font-family: 'Barlow Condensed', sans-serif;
       overflow-x: hidden;
     }
-
     body::before {
       content: '';
       position: fixed;
@@ -55,7 +55,6 @@
       pointer-events: none;
       opacity: 0.45;
     }
-
     .shell {
       width: min(100%, 860px);
       margin: 0 auto;
@@ -63,7 +62,6 @@
       position: relative;
       z-index: 1;
     }
-
     .topbar {
       display: flex;
       justify-content: space-between;
@@ -73,7 +71,6 @@
       border-bottom: 1px solid var(--ink3);
       margin-bottom: 18px;
     }
-
     .mono {
       font-family: 'DM Mono', monospace;
       font-size: 9px;
@@ -81,14 +78,12 @@
       text-transform: uppercase;
       color: var(--ink2);
     }
-
     .brand {
       display: flex;
       align-items: center;
       gap: 10px;
       min-width: 0;
     }
-
     .brand-mark {
       width: 30px;
       height: 30px;
@@ -102,7 +97,6 @@
       font-size: 16px;
       flex: 0 0 auto;
     }
-
     .brand-name {
       font-size: 16px;
       letter-spacing: 0.1em;
@@ -111,13 +105,11 @@
       color: var(--cream);
       white-space: nowrap;
     }
-
     .hero {
       display: grid;
       gap: 16px;
       margin-top: 8px;
     }
-
     .panel {
       background: linear-gradient(180deg, rgba(20,19,28,0.95), rgba(15,14,22,0.98));
       border: 1px solid var(--ink3);
@@ -126,7 +118,6 @@
       overflow: hidden;
       position: relative;
     }
-
     .panel::after {
       content: '';
       position: absolute;
@@ -134,11 +125,7 @@
       background: radial-gradient(circle at top right, rgba(255,92,122,0.12), transparent 28%);
       pointer-events: none;
     }
-
-    .hero-main {
-      padding: 24px 20px 22px;
-    }
-
+    .hero-main { padding: 24px 20px 22px; }
     .eyebrow {
       display: flex;
       align-items: center;
@@ -150,7 +137,6 @@
       text-transform: uppercase;
       color: var(--ink2);
     }
-
     .eyebrow::before {
       content: '';
       width: 22px;
@@ -158,13 +144,7 @@
       background: var(--pink);
       flex: 0 0 auto;
     }
-
-    .title-block {
-      margin-bottom: 22px;
-      position: relative;
-      z-index: 1;
-    }
-
+    .title-block { margin-bottom: 22px; position: relative; z-index: 1; }
     .title-main {
       font-size: clamp(56px, 17vw, 112px);
       line-height: 0.88;
@@ -173,7 +153,6 @@
       color: var(--cream);
       letter-spacing: -0.04em;
     }
-
     .title-sub {
       display: block;
       margin-left: 18px;
@@ -186,7 +165,6 @@
       font-weight: 900;
       letter-spacing: -0.02em;
     }
-
     .title-ghost {
       display: block;
       margin-top: 6px;
@@ -198,7 +176,6 @@
       -webkit-text-stroke: 1px rgba(232,226,217,0.16);
       color: transparent;
     }
-
     .intro {
       display: grid;
       gap: 14px;
@@ -206,27 +183,23 @@
       position: relative;
       z-index: 1;
     }
-
     .intro-copy {
       max-width: 34ch;
       font-size: 18px;
       line-height: 1.3;
       color: var(--ink2);
     }
-
     .intro-copy strong {
       color: var(--cream);
       font-weight: 700;
       letter-spacing: 0.03em;
       text-transform: uppercase;
     }
-
     .button-row {
       display: grid;
       gap: 10px;
       margin-top: 6px;
     }
-
     button {
       appearance: none;
       border: none;
@@ -234,10 +207,8 @@
       border-radius: 18px;
       transition: transform 0.15s ease, background 0.15s ease, border-color 0.15s ease, color 0.15s ease;
     }
-
     button:hover { transform: translateY(-1px); }
     button:active { transform: translateY(1px) scale(0.99); }
-
     .btn-primary {
       background: var(--pink);
       color: white;
@@ -251,9 +222,7 @@
       justify-content: space-between;
       align-items: center;
     }
-
     .btn-primary:hover { background: var(--pink-dark); }
-
     .btn-secondary {
       background: transparent;
       color: var(--ink2);
@@ -267,24 +236,17 @@
       justify-content: space-between;
       align-items: center;
     }
-
     .btn-secondary:hover {
       color: var(--pink);
       border-color: rgba(255,92,122,0.45);
     }
-
-    .result-wrap {
-      display: grid;
-      gap: 16px;
-    }
-
+    .result-wrap { display: grid; gap: 16px; }
     .terminal {
       background: var(--bg3);
       border: 1px solid var(--ink3);
       border-radius: 22px;
       overflow: hidden;
     }
-
     .term-bar {
       padding: 11px 14px;
       border-bottom: 1px solid var(--ink3);
@@ -293,13 +255,7 @@
       gap: 7px;
       background: var(--bg2);
     }
-
-    .term-dot {
-      width: 8px;
-      height: 8px;
-      border-radius: 50%;
-    }
-
+    .term-dot { width: 8px; height: 8px; border-radius: 50%; }
     .term-title {
       margin-left: 4px;
       font-family: 'DM Mono', monospace;
@@ -308,7 +264,6 @@
       text-transform: uppercase;
       color: var(--ink2);
     }
-
     .term-body {
       padding: 18px 16px 19px;
       font-family: 'DM Mono', monospace;
@@ -316,11 +271,9 @@
       line-height: 1.8;
       color: var(--ink2);
     }
-
     .term-body .pink { color: var(--pink); }
     .term-body .indigo { color: var(--indigo); }
     .term-body .cream { color: var(--cream); }
-
     .episode-card {
       padding: 20px;
       background: linear-gradient(180deg, rgba(10,9,15,0.94), rgba(20,19,28,0.96));
@@ -329,7 +282,6 @@
       position: relative;
       overflow: hidden;
     }
-
     .episode-card::before {
       content: attr(data-case);
       position: absolute;
@@ -342,7 +294,6 @@
       color: rgba(232,226,217,0.04);
       pointer-events: none;
     }
-
     .card-top {
       display: flex;
       justify-content: space-between;
@@ -352,7 +303,6 @@
       position: relative;
       z-index: 1;
     }
-
     .case-label {
       font-family: 'DM Mono', monospace;
       font-size: 9px;
@@ -360,7 +310,6 @@
       text-transform: uppercase;
       color: var(--ink2);
     }
-
     .live-badge {
       display: inline-flex;
       align-items: center;
@@ -376,6 +325,46 @@
       white-space: nowrap;
     }
 
+    .card-actions {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+    }
+
+    .favorite-btn {
+      appearance: none;
+      border: 1px solid var(--ink3);
+      background: transparent;
+      color: var(--ink2);
+      border-radius: 999px;
+      padding: 7px 11px;
+      font-family: 'DM Mono', monospace;
+      font-size: 8px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+    }
+
+    .favorite-btn:hover {
+      color: var(--pink);
+      border-color: rgba(255,92,122,0.45);
+      transform: translateY(-1px);
+    }
+
+    .favorite-btn.is-favorite {
+      color: var(--pink);
+      border-color: rgba(255,92,122,0.45);
+      background: var(--pink-dim);
+    }
+
+    .favorite-icon {
+      font-size: 10px;
+      line-height: 1;
+    }
     .live-dot {
       width: 6px;
       height: 6px;
@@ -384,7 +373,6 @@
       box-shadow: 0 0 10px var(--pink);
       animation: blink-soft 2s ease-in-out infinite;
     }
-
     .episode-number {
       font-family: 'Barlow Condensed', sans-serif;
       font-size: 20px;
@@ -396,7 +384,6 @@
       position: relative;
       z-index: 1;
     }
-
     .episode-title {
       font-family: 'Playfair Display', serif;
       font-style: italic;
@@ -409,7 +396,6 @@
       z-index: 1;
       max-width: 12ch;
     }
-
     .episode-meta {
       display: grid;
       grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -418,7 +404,6 @@
       position: relative;
       z-index: 1;
     }
-
     .meta-box {
       background: var(--ink4);
       border: 1px solid var(--ink3);
@@ -426,7 +411,6 @@
       padding: 13px 12px 12px;
       min-height: 84px;
     }
-
     .meta-label {
       font-family: 'DM Mono', monospace;
       font-size: 8px;
@@ -435,7 +419,6 @@
       color: var(--ink2);
       margin-bottom: 8px;
     }
-
     .meta-value {
       color: var(--cream);
       font-size: 24px;
@@ -443,12 +426,46 @@
       font-weight: 900;
       letter-spacing: -0.03em;
     }
-
     .meta-value.small {
       font-size: 18px;
       line-height: 1.12;
       letter-spacing: 0.01em;
       font-weight: 700;
+    }
+
+    .meta-select-wrap {
+      position: relative;
+      z-index: 1;
+      margin-top: 14px;
+    }
+
+    .category-select {
+      width: 100%;
+      appearance: none;
+      background: var(--ink4);
+      color: var(--cream);
+      border: 1px solid var(--ink3);
+      border-radius: 16px;
+      padding: 14px 16px;
+      font-family: 'DM Mono', monospace;
+      font-size: 11px;
+      letter-spacing: 0.06em;
+      text-transform: lowercase;
+      outline: none;
+    }
+
+    .category-select:focus {
+      border-color: rgba(255,92,122,0.45);
+      box-shadow: 0 0 0 3px rgba(255,92,122,0.08);
+    }
+
+    .category-hint {
+      margin-top: 10px;
+      font-family: 'DM Mono', monospace;
+      font-size: 8px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--ink2);
     }
 
     .episode-description {
@@ -459,7 +476,6 @@
       position: relative;
       z-index: 1;
     }
-
     .footer-note {
       margin-top: 18px;
       padding-top: 16px;
@@ -472,7 +488,6 @@
       position: relative;
       z-index: 1;
     }
-
     .helper {
       font-family: 'DM Mono', monospace;
       font-size: 8px;
@@ -480,7 +495,6 @@
       text-transform: uppercase;
       color: var(--ink2);
     }
-
     .mini-stats {
       display: grid;
       grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -490,12 +504,7 @@
       border-radius: 22px;
       overflow: hidden;
     }
-
-    .mini-stat {
-      background: var(--bg2);
-      padding: 16px 14px;
-    }
-
+    .mini-stat { background: var(--bg2); padding: 16px 14px; }
     .mini-stat-number {
       color: var(--pink);
       font-size: 28px;
@@ -504,7 +513,6 @@
       letter-spacing: -0.04em;
       margin-bottom: 4px;
     }
-
     .mini-stat-label {
       font-family: 'DM Mono', monospace;
       font-size: 8px;
@@ -513,13 +521,7 @@
       color: var(--ink2);
       line-height: 1.5;
     }
-
-    .info-panel {
-      padding: 20px;
-      display: grid;
-      gap: 18px;
-    }
-
+    .info-panel { padding: 20px; display: grid; gap: 18px; }
     .section-label {
       font-family: 'DM Mono', monospace;
       font-size: 9px;
@@ -527,27 +529,19 @@
       text-transform: uppercase;
       color: var(--ink2);
     }
-
     .idea-copy {
       font-size: 17px;
       line-height: 1.4;
       color: var(--ink2);
       max-width: 40ch;
     }
-
     .idea-copy strong {
       color: var(--cream);
       text-transform: uppercase;
       letter-spacing: 0.04em;
       font-weight: 700;
     }
-
-    .tag-row {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
-    }
-
+    .tag-row { display: flex; flex-wrap: wrap; gap: 8px; }
     .tag {
       border: 1px solid var(--ink3);
       border-radius: 999px;
@@ -558,26 +552,18 @@
       text-transform: uppercase;
       color: var(--ink2);
     }
-
     .tag.active {
       border-color: rgba(255,92,122,0.45);
       color: var(--pink);
       background: var(--pink-dim);
     }
-
     .install-note {
       border-top: 1px solid var(--ink3);
       padding-top: 16px;
       display: grid;
       gap: 8px;
     }
-
-    .install-note p {
-      color: var(--ink2);
-      font-size: 14px;
-      line-height: 1.45;
-    }
-
+    .install-note p { color: var(--ink2); font-size: 14px; line-height: 1.45; }
     .colophon {
       display: flex;
       justify-content: space-between;
@@ -587,12 +573,10 @@
       margin-top: 16px;
       flex-wrap: wrap;
     }
-
     @keyframes blink-soft {
       0%,100% { opacity: 1; }
       50% { opacity: 0.22; }
     }
-
     @media (min-width: 760px) {
       .shell { padding: 30px 26px 48px; }
       .hero { grid-template-columns: 1.25fr 0.9fr; align-items: stretch; }
@@ -601,7 +585,6 @@
       .button-row { grid-template-columns: 1fr; max-width: 360px; }
       .result-wrap { height: 100%; }
     }
-
     @media (max-width: 420px) {
       .topbar > .mono:first-child, .topbar > .mono:last-child { display: none; }
       .topbar { justify-content: center; }
@@ -614,7 +597,7 @@
 <body>
   <main class="shell">
     <header class="topbar">
-      <span class="mono">Random Player · Draft 01</span>
+      <span class="mono">Random Player · Night Mode</span>
       <div class="brand" aria-label="App Name">
         <div class="brand-mark">?</div>
         <div class="brand-name">Nachtarchiv</div>
@@ -660,9 +643,9 @@
           </div>
           <div class="term-body">
             <div>// probing archive…</div>
-            <div><span class="pink">source</span>: spotify episodes</div>
+            <div><span class="pink">source</span>: hauptfolgen 001-239</div>
             <div><span class="pink">mode</span>: random night pick</div>
-            <div><span class="pink">status</span>: <span class="cream">ready</span></div>
+            <div><span class="pink">status</span>: <span class="cream">bereit</span></div>
             <div>&nbsp;</div>
             <div><span class="indigo">→</span> press button to draw a case</div>
           </div>
@@ -671,36 +654,56 @@
         <section class="episode-card" id="episodeCard" data-case="001">
           <div class="card-top">
             <div class="case-label">// Current Case</div>
-            <div class="live-badge"><span class="live-dot"></span> bereit</div>
+            <div class="card-actions">
+              <button class="favorite-btn" id="favoriteBtn" type="button" aria-pressed="false">
+                <span class="favorite-icon">♡</span>
+                <span id="favoriteLabel">Favorit</span>
+              </button>
+              <div class="live-badge"><span class="live-dot"></span> bereit</div>
+            </div>
           </div>
 
           <div class="episode-number" id="episodeNumber">Folge 001</div>
-          <h1 class="episode-title" id="episodeTitle">Der Super-Papagei</h1>
+          <h1 class="episode-title" id="episodeTitle">Die drei ??? und der Super-Papagei</h1>
 
           <div class="episode-meta">
             <div class="meta-box">
               <div class="meta-label">Ära</div>
-              <div class="meta-value small" id="episodeEra">Klassik</div>
+              <div class="meta-value small" id="episodeEra">TBD</div>
             </div>
             <div class="meta-box">
-              <div class="meta-label">Grusel</div>
-              <div class="meta-value" id="episodeSpook">2/5</div>
+              <div class="meta-label">Kategorie</div>
+              <div class="meta-value small" id="episodeCategoryLabel">noch offen</div>
             </div>
           </div>
 
+          <div class="meta-select-wrap">
+            <select class="category-select" id="categorySelect" aria-label="Folge kategorisieren">
+              <option value="">kategorie wählen</option>
+              <option value="vanilla">vanilla</option>
+              <option value="gruselig">gruselig</option>
+              <option value="ungelöst">ungelöst</option>
+              <option value="inspector cotter">inspector cotter</option>
+              <option value="langweilig">langweilig</option>
+              <option value="verwirrender plot">verwirrender plot</option>
+              <option value="top tier">top tier</option>
+            </select>
+            <div class="category-hint">lokal gespeichert</div>
+          </div>
+
           <p class="episode-description" id="episodeDescription">
-            Der erste Platzhalter für echte Beschreibung.
+            Noch ohne Notiz.
           </p>
 
           <div class="footer-note">
-            <span class="helper" id="episodeStatus">shuffle ready · sample data</span>
-            <span class="helper">239 Hauptfolgen geladen</span>
+            <span class="helper" id="episodeStatus">shuffle bereit · folge 001</span>
+            <span class="helper">239 hauptfolgen geladen</span>
           </div>
         </section>
 
         <div class="mini-stats" aria-label="App Stats">
           <div class="mini-stat">
-            <div class="mini-stat-number" id="episodeCount">6</div>
+            <div class="mini-stat-number" id="episodeCount">239</div>
             <div class="mini-stat-label">Hauptfolgen</div>
           </div>
           <div class="mini-stat">
@@ -708,31 +711,31 @@
             <div class="mini-stat-label">Neu würfeln</div>
           </div>
           <div class="mini-stat">
-            <div class="mini-stat-number">v1</div>
-            <div class="mini-stat-label">Interface first</div>
+            <div class="mini-stat-number">live</div>
+            <div class="mini-stat-label">nachtmodus</div>
           </div>
         </div>
       </aside>
     </section>
 
     <section class="panel info-panel">
-      <div class="section-label">// Später ergänzen</div>
+      <div class="section-label">// Nachtarchiv</div>
       <p class="idea-copy">
-        Diese Version ist <strong> zuerst nicht final</strong>. Danach noch Beschreibungen etc. dranhängen, Links, Kategorien, etc..
+        Hier bitte Folgen würfeln, speichern und nach Gefühl einordnen. Nachtarchiv hält deine Kategorien direkt auf deinem Gerät fest.
       </p>
 
       <div class="tag-row">
         <span class="tag active">random</span>
         <span class="tag">ära</span>
-        <span class="tag">grusel</span>
+        <span class="tag">kategorien</span>
         <span class="tag">beschreibung</span>
-        <span class="tag">filter später</span>
+        <span class="tag">lokal gespeichert</span>
       </div>
 
       <div class="install-note">
-        <div class="section-label">// Handy als App</div>
+        <div class="section-label">// iPhone</div>
         <p>
-          Auf GitHub Pages hosten und dann auf dem Handy zum Home-Bildschirm hinzufügen. Für eine richtige PWA mit App-Icon und Offline-Modus ergänzen wir im nächsten Schritt noch Manifest und Service Worker.
+          Hier bitte in Safari öffnen und zum Home-Bildschirm hinzufügen, damit sich Nachtarchiv wie eine App anfühlt.
         </p>
       </div>
     </section>
@@ -742,7 +745,7 @@
         <div class="brand-mark">?</div>
         <div class="brand-name">Nachtarchiv</div>
       </div>
-      <span class="mono">HTML-Vorlage + PDF-Folgenliste integriert</span>
+      <span class="mono">Nachtarchiv</span>
     </footer>
   </main>
 
@@ -751,1675 +754,1675 @@
   {
     "number": 1,
     "title": "Die drei ??? und der Super-Papagei",
-    "era": "TBD",
+    "era": "Die Klassiker",
     "spookiness": 0,
-    "description": "Beschreibung folgt."
+    "description": "Noch ohne Notiz."
   },
   {
     "number": 2,
     "title": "Die drei ??? und der Phantomsee",
-    "era": "TBD",
+    "era": "Die Klassiker",
     "spookiness": 0,
-    "description": "Beschreibung folgt."
+    "description": "Noch ohne Notiz."
   },
   {
     "number": 3,
     "title": "Die drei ??? und der Karpatenhund",
-    "era": "TBD",
+    "era": "Die Klassiker",
     "spookiness": 0,
-    "description": "Beschreibung folgt."
+    "description": "Noch ohne Notiz."
   },
   {
     "number": 4,
     "title": "Die drei ??? und die schwarze Katze",
-    "era": "TBD",
+    "era": "Die Klassiker",
     "spookiness": 0,
-    "description": "Beschreibung folgt."
+    "description": "Noch ohne Notiz."
   },
   {
     "number": 5,
     "title": "Die drei ??? und der Fluch des Rubins",
-    "era": "TBD",
+    "era": "Die Klassiker",
     "spookiness": 0,
-    "description": "Beschreibung folgt."
+    "description": "Noch ohne Notiz."
   },
   {
     "number": 6,
     "title": "Die drei ??? und der sprechende Totenkopf",
-    "era": "TBD",
+    "era": "Die Klassiker",
     "spookiness": 0,
-    "description": "Beschreibung folgt."
+    "description": "Noch ohne Notiz."
   },
   {
     "number": 7,
     "title": "Die drei ??? und der unheimliche Drache",
-    "era": "TBD",
+    "era": "Die Klassiker",
     "spookiness": 0,
-    "description": "Beschreibung folgt."
+    "description": "Noch ohne Notiz."
   },
   {
     "number": 8,
     "title": "Die drei ??? und der grüne Geist",
-    "era": "TBD",
+    "era": "Die Klassiker",
     "spookiness": 0,
-    "description": "Beschreibung folgt."
+    "description": "Noch ohne Notiz."
   },
   {
     "number": 9,
     "title": "Die drei ??? und die rätselhaften Bilder",
-    "era": "TBD",
+    "era": "Die Klassiker",
     "spookiness": 0,
-    "description": "Beschreibung folgt."
+    "description": "Noch ohne Notiz."
   },
   {
     "number": 10,
     "title": "Die drei ??? und die flüsternde Mumie",
-    "era": "TBD",
+    "era": "Die Klassiker",
     "spookiness": 0,
-    "description": "Beschreibung folgt."
+    "description": "Noch ohne Notiz."
   },
   {
     "number": 11,
     "title": "Die drei ??? und das Gespensterschloß",
-    "era": "TBD",
+    "era": "Die Klassiker",
     "spookiness": 0,
-    "description": "Beschreibung folgt."
+    "description": "Noch ohne Notiz."
   },
   {
     "number": 12,
     "title": "Die drei ??? und der seltsame Wecker",
-    "era": "TBD",
+    "era": "Die Klassiker",
     "spookiness": 0,
-    "description": "Beschreibung folgt."
+    "description": "Noch ohne Notiz."
   },
   {
     "number": 13,
     "title": "Die drei ??? und der lachende Schatten",
-    "era": "TBD",
+    "era": "Die Klassiker",
     "spookiness": 0,
-    "description": "Beschreibung folgt."
+    "description": "Noch ohne Notiz."
   },
   {
     "number": 14,
     "title": "Die drei ??? und das Bergmonster",
-    "era": "TBD",
+    "era": "Die Klassiker",
     "spookiness": 0,
-    "description": "Beschreibung folgt."
+    "description": "Noch ohne Notiz."
   },
   {
     "number": 15,
     "title": "Die drei ??? und der rasende Löwe",
-    "era": "TBD",
+    "era": "Die Klassiker",
     "spookiness": 0,
-    "description": "Beschreibung folgt."
+    "description": "Noch ohne Notiz."
   },
   {
     "number": 16,
     "title": "Die drei ??? und der Zauberspiegel",
-    "era": "TBD",
+    "era": "Die Klassiker",
     "spookiness": 0,
-    "description": "Beschreibung folgt."
+    "description": "Noch ohne Notiz."
   },
   {
     "number": 17,
     "title": "Die drei ??? und die gefährliche Erbschaft",
-    "era": "TBD",
+    "era": "Die Klassiker",
     "spookiness": 0,
-    "description": "Beschreibung folgt."
+    "description": "Noch ohne Notiz."
   },
   {
     "number": 18,
     "title": "Die drei ??? und die Geisterinsel",
-    "era": "TBD",
+    "era": "Die Klassiker",
     "spookiness": 0,
-    "description": "Beschreibung folgt."
+    "description": "Noch ohne Notiz."
   },
   {
     "number": 19,
     "title": "Die drei ??? und der Teufelsberg",
-    "era": "TBD",
+    "era": "Die Klassiker",
     "spookiness": 0,
-    "description": "Beschreibung folgt."
+    "description": "Noch ohne Notiz."
   },
   {
     "number": 20,
     "title": "Die drei ??? und die flammende Spur",
-    "era": "TBD",
+    "era": "Die Klassiker",
     "spookiness": 0,
-    "description": "Beschreibung folgt."
+    "description": "Noch ohne Notiz."
   },
   {
     "number": 21,
     "title": "Die drei ??? und der tanzende Teufel",
-    "era": "TBD",
+    "era": "Die Klassiker",
     "spookiness": 0,
-    "description": "Beschreibung folgt."
+    "description": "Noch ohne Notiz."
   },
   {
     "number": 22,
     "title": "Die drei ??? und der verschwundene Schatz",
-    "era": "TBD",
+    "era": "Die Klassiker",
     "spookiness": 0,
-    "description": "Beschreibung folgt."
+    "description": "Noch ohne Notiz."
   },
   {
     "number": 23,
     "title": "Die drei ??? und das Aztekenschwert",
-    "era": "TBD",
+    "era": "Die Klassiker",
     "spookiness": 0,
-    "description": "Beschreibung folgt."
+    "description": "Noch ohne Notiz."
   },
   {
     "number": 24,
     "title": "Die drei ??? und die silberne Spinne",
-    "era": "TBD",
+    "era": "Die Klassiker",
     "spookiness": 0,
-    "description": "Beschreibung folgt."
+    "description": "Noch ohne Notiz."
   },
   {
     "number": 25,
     "title": "Die drei ??? und die singende Schlange",
-    "era": "TBD",
+    "era": "Die Klassiker",
     "spookiness": 0,
-    "description": "Beschreibung folgt."
+    "description": "Noch ohne Notiz."
   },
   {
     "number": 26,
     "title": "Die drei ??? und die Silbermine",
-    "era": "TBD",
+    "era": "Die Klassiker",
     "spookiness": 0,
-    "description": "Beschreibung folgt."
+    "description": "Noch ohne Notiz."
   },
   {
     "number": 27,
     "title": "Die drei ??? und der magische Kreis",
-    "era": "TBD",
+    "era": "Die Klassiker",
     "spookiness": 0,
-    "description": "Beschreibung folgt."
+    "description": "Noch ohne Notiz."
   },
   {
     "number": 28,
     "title": "Die drei ??? und der Doppelgänger",
-    "era": "TBD",
+    "era": "Die Klassiker",
     "spookiness": 0,
-    "description": "Beschreibung folgt."
+    "description": "Noch ohne Notiz."
   },
   {
     "number": 29,
     "title": "Die drei ??? Die Originalmusik",
-    "era": "TBD",
+    "era": "Die Klassiker",
     "spookiness": 0,
-    "description": "Beschreibung folgt."
+    "description": "Noch ohne Notiz."
   },
   {
     "number": 30,
     "title": "Die drei ??? und das Riff der Haie",
-    "era": "TBD",
+    "era": "Die Klassiker",
     "spookiness": 0,
-    "description": "Beschreibung folgt."
+    "description": "Noch ohne Notiz."
   },
   {
     "number": 31,
     "title": "Die drei ??? und das Narbengesicht",
-    "era": "TBD",
+    "era": "Die Klassiker",
     "spookiness": 0,
-    "description": "Beschreibung folgt."
+    "description": "Noch ohne Notiz."
   },
   {
     "number": 32,
     "title": "Die drei ??? und der Ameisenmensch",
-    "era": "TBD",
+    "era": "Die Klassiker",
     "spookiness": 0,
-    "description": "Beschreibung folgt."
+    "description": "Noch ohne Notiz."
   },
   {
     "number": 33,
     "title": "Die drei ??? und die bedrohte Ranch",
-    "era": "TBD",
+    "era": "Die Klassiker",
     "spookiness": 0,
-    "description": "Beschreibung folgt."
+    "description": "Noch ohne Notiz."
   },
   {
     "number": 34,
     "title": "Die drei ??? und der rote Pirat",
-    "era": "TBD",
+    "era": "Die Klassiker",
     "spookiness": 0,
-    "description": "Beschreibung folgt."
+    "description": "Noch ohne Notiz."
   },
   {
     "number": 35,
     "title": "Die drei ??? und der Höhlenmensch",
-    "era": "TBD",
+    "era": "Die Klassiker",
     "spookiness": 0,
-    "description": "Beschreibung folgt."
+    "description": "Noch ohne Notiz."
   },
   {
     "number": 36,
     "title": "Die drei ??? und der Super-Wal",
-    "era": "TBD",
+    "era": "Die Klassiker",
     "spookiness": 0,
-    "description": "Beschreibung folgt."
+    "description": "Noch ohne Notiz."
   },
   {
     "number": 37,
     "title": "Die drei ??? und der heimliche Hehler",
-    "era": "TBD",
+    "era": "Die Klassiker",
     "spookiness": 0,
-    "description": "Beschreibung folgt."
+    "description": "Noch ohne Notiz."
   },
   {
     "number": 38,
     "title": "Die drei ??? und der unsichtbare Gegner",
-    "era": "TBD",
+    "era": "Die Klassiker",
     "spookiness": 0,
-    "description": "Beschreibung folgt."
+    "description": "Noch ohne Notiz."
   },
   {
     "number": 39,
     "title": "Die drei ??? und die Perlenvögel",
-    "era": "TBD",
+    "era": "Die Klassiker",
     "spookiness": 0,
-    "description": "Beschreibung folgt."
+    "description": "Noch ohne Notiz."
   },
   {
     "number": 40,
     "title": "Die drei ??? und der Automarder",
-    "era": "TBD",
+    "era": "Die Klassiker",
     "spookiness": 0,
-    "description": "Beschreibung folgt."
+    "description": "Noch ohne Notiz."
   },
   {
     "number": 41,
     "title": "Die drei ??? und das Volk der Winde",
-    "era": "TBD",
+    "era": "Die Klassiker",
     "spookiness": 0,
-    "description": "Beschreibung folgt."
+    "description": "Noch ohne Notiz."
   },
   {
     "number": 42,
     "title": "Die drei ??? und der weinende Sarg",
-    "era": "TBD",
+    "era": "Die Klassiker",
     "spookiness": 0,
-    "description": "Beschreibung folgt."
+    "description": "Noch ohne Notiz."
   },
   {
     "number": 43,
     "title": "Die drei ??? und der höllische Werwolf",
-    "era": "TBD",
+    "era": "Die Klassiker",
     "spookiness": 0,
-    "description": "Beschreibung folgt."
+    "description": "Noch ohne Notiz."
   },
   {
     "number": 44,
     "title": "Die drei ??? und der gestohlene Preis",
-    "era": "TBD",
+    "era": "Die Klassiker",
     "spookiness": 0,
-    "description": "Beschreibung folgt."
+    "description": "Noch ohne Notiz."
   },
   {
     "number": 45,
     "title": "Die drei ??? und das Gold der Wikinger",
-    "era": "TBD",
+    "era": "Die Klassiker",
     "spookiness": 0,
-    "description": "Beschreibung folgt."
+    "description": "Noch ohne Notiz."
   },
   {
     "number": 46,
     "title": "Die drei ??? und der schrullige Millionär",
-    "era": "TBD",
+    "era": "Die Klassiker",
     "spookiness": 0,
-    "description": "Beschreibung folgt."
+    "description": "Noch ohne Notiz."
   },
   {
     "number": 47,
     "title": "Die drei ??? und der giftige Gockel",
-    "era": "TBD",
+    "era": "Crimebusters",
     "spookiness": 0,
-    "description": "Beschreibung folgt."
+    "description": "Noch ohne Notiz."
   },
   {
     "number": 48,
     "title": "Die drei ??? und die gefährlichen Fässer",
-    "era": "TBD",
+    "era": "Crimebusters",
     "spookiness": 0,
-    "description": "Beschreibung folgt."
+    "description": "Noch ohne Notiz."
   },
   {
     "number": 49,
     "title": "Die drei ??? und die Comic-Diebe",
-    "era": "TBD",
+    "era": "Crimebusters",
     "spookiness": 0,
-    "description": "Beschreibung folgt."
+    "description": "Noch ohne Notiz."
   },
   {
     "number": 50,
     "title": "Die drei ??? und der verschwundene Filmstar",
-    "era": "TBD",
+    "era": "Crimebusters",
     "spookiness": 0,
-    "description": "Beschreibung folgt."
+    "description": "Noch ohne Notiz."
   },
   {
     "number": 51,
     "title": "Die drei ??? und der riskante Ritt",
-    "era": "TBD",
+    "era": "Crimebusters",
     "spookiness": 0,
-    "description": "Beschreibung folgt."
+    "description": "Noch ohne Notiz."
   },
   {
     "number": 52,
     "title": "Die drei ??? und die Musikpiraten",
-    "era": "TBD",
+    "era": "Crimebusters",
     "spookiness": 0,
-    "description": "Beschreibung folgt."
+    "description": "Noch ohne Notiz."
   },
   {
     "number": 53,
     "title": "Die drei ??? und die Automafia",
-    "era": "TBD",
+    "era": "Crimebusters",
     "spookiness": 0,
-    "description": "Beschreibung folgt."
+    "description": "Noch ohne Notiz."
   },
   {
     "number": 54,
     "title": "Die drei ??? Gefahr im Verzug",
-    "era": "TBD",
+    "era": "Crimebusters",
     "spookiness": 0,
-    "description": "Beschreibung folgt."
+    "description": "Noch ohne Notiz."
   },
   {
     "number": 55,
     "title": "Die drei ??? Gekaufte Spieler",
-    "era": "TBD",
+    "era": "Crimebusters",
     "spookiness": 0,
-    "description": "Beschreibung folgt."
+    "description": "Noch ohne Notiz."
   },
   {
     "number": 56,
     "title": "Die drei ??? Angriff der Computer-Viren",
-    "era": "TBD",
+    "era": "Crimebusters",
     "spookiness": 0,
-    "description": "Beschreibung folgt."
+    "description": "Noch ohne Notiz."
   },
   {
     "number": 57,
     "title": "Die drei ??? Tatort Zirkus",
-    "era": "TBD",
+    "era": "Die ersten deutschen Vorlagen",
     "spookiness": 0,
-    "description": "Beschreibung folgt."
+    "description": "Noch ohne Notiz."
   },
   {
     "number": 58,
     "title": "Die drei ??? und der verrückte Maler",
-    "era": "TBD",
+    "era": "Die ersten deutschen Vorlagen",
     "spookiness": 0,
-    "description": "Beschreibung folgt."
+    "description": "Noch ohne Notiz."
   },
   {
     "number": 59,
     "title": "Die drei ??? Giftiges Wasser",
-    "era": "TBD",
+    "era": "Die ersten deutschen Vorlagen",
     "spookiness": 0,
-    "description": "Beschreibung folgt."
+    "description": "Noch ohne Notiz."
   },
   {
     "number": 60,
     "title": "Die drei ??? Dopingmixer",
-    "era": "TBD",
+    "era": "Die ersten deutschen Vorlagen",
     "spookiness": 0,
-    "description": "Beschreibung folgt."
+    "description": "Noch ohne Notiz."
   },
   {
     "number": 61,
     "title": "Die drei ??? und die Rache des Tigers",
-    "era": "TBD",
+    "era": "Die ersten deutschen Vorlagen",
     "spookiness": 0,
-    "description": "Beschreibung folgt."
+    "description": "Noch ohne Notiz."
   },
   {
     "number": 62,
     "title": "Die drei ??? Spuk im Hotel",
-    "era": "TBD",
+    "era": "Die ersten deutschen Vorlagen",
     "spookiness": 0,
-    "description": "Beschreibung folgt."
+    "description": "Noch ohne Notiz."
   },
   {
     "number": 63,
     "title": "Die drei ??? Fußball-Gangster",
-    "era": "TBD",
+    "era": "Die ersten deutschen Vorlagen",
     "spookiness": 0,
-    "description": "Beschreibung folgt."
+    "description": "Noch ohne Notiz."
   },
   {
     "number": 64,
     "title": "Die drei ??? Geisterstadt",
-    "era": "TBD",
+    "era": "Die ersten deutschen Vorlagen",
     "spookiness": 0,
-    "description": "Beschreibung folgt."
+    "description": "Noch ohne Notiz."
   },
   {
     "number": 65,
     "title": "Die drei ??? Diamantenschmuggel",
-    "era": "TBD",
+    "era": "Die ersten deutschen Vorlagen",
     "spookiness": 0,
-    "description": "Beschreibung folgt."
+    "description": "Noch ohne Notiz."
   },
   {
     "number": 66,
     "title": "Die drei ??? und die Schattenmänner",
-    "era": "TBD",
+    "era": "Die ersten deutschen Vorlagen",
     "spookiness": 0,
-    "description": "Beschreibung folgt."
+    "description": "Noch ohne Notiz."
   },
   {
     "number": 67,
     "title": "Die drei ??? Geheimnis der Särge",
-    "era": "TBD",
+    "era": "Die ersten deutschen Vorlagen",
     "spookiness": 0,
-    "description": "Beschreibung folgt."
+    "description": "Noch ohne Notiz."
   },
   {
     "number": 68,
     "title": "Die drei ??? Schatz im Bergsee",
-    "era": "TBD",
+    "era": "Die ersten deutschen Vorlagen",
     "spookiness": 0,
-    "description": "Beschreibung folgt."
+    "description": "Noch ohne Notiz."
   },
   {
     "number": 69,
     "title": "Die drei ??? Späte Rache",
-    "era": "TBD",
+    "era": "Die ersten deutschen Vorlagen",
     "spookiness": 0,
-    "description": "Beschreibung folgt."
+    "description": "Noch ohne Notiz."
   },
   {
     "number": 70,
     "title": "Die drei ??? Schüsse aus dem Dunkel",
-    "era": "TBD",
+    "era": "Die ersten deutschen Vorlagen",
     "spookiness": 0,
-    "description": "Beschreibung folgt."
+    "description": "Noch ohne Notiz."
   },
   {
     "number": 71,
     "title": "Die drei ??? Die verschwundene Seglerin",
-    "era": "TBD",
+    "era": "Die ersten deutschen Vorlagen",
     "spookiness": 0,
-    "description": "Beschreibung folgt."
+    "description": "Noch ohne Notiz."
   },
   {
     "number": 72,
     "title": "Die drei ??? Dreckiger Deal",
-    "era": "TBD",
+    "era": "Die ersten deutschen Vorlagen",
     "spookiness": 0,
-    "description": "Beschreibung folgt."
+    "description": "Noch ohne Notiz."
   },
   {
     "number": 73,
     "title": "Die drei ??? Poltergeist",
-    "era": "TBD",
+    "era": "Die Triumvirats-Ära",
     "spookiness": 0,
-    "description": "Beschreibung folgt."
+    "description": "Noch ohne Notiz."
   },
   {
     "number": 74,
     "title": "Die drei ??? und das brennende Schwert",
-    "era": "TBD",
+    "era": "Die Triumvirats-Ära",
     "spookiness": 0,
-    "description": "Beschreibung folgt."
+    "description": "Noch ohne Notiz."
   },
   {
     "number": 75,
     "title": "Die drei ??? Die Spur des Raben",
-    "era": "TBD",
+    "era": "Die Triumvirats-Ära",
     "spookiness": 0,
-    "description": "Beschreibung folgt."
+    "description": "Noch ohne Notiz."
   },
   {
     "number": 76,
     "title": "Die drei ??? Stimmen aus dem Nichts",
-    "era": "TBD",
+    "era": "Die Triumvirats-Ära",
     "spookiness": 0,
-    "description": "Beschreibung folgt."
+    "description": "Noch ohne Notiz."
   },
   {
     "number": 77,
     "title": "Die drei ??? Pistenteufel",
-    "era": "TBD",
+    "era": "Die Triumvirats-Ära",
     "spookiness": 0,
-    "description": "Beschreibung folgt."
+    "description": "Noch ohne Notiz."
   },
   {
     "number": 78,
     "title": "Die drei ??? Das leere Grab",
-    "era": "TBD",
+    "era": "Die Triumvirats-Ära",
     "spookiness": 0,
-    "description": "Beschreibung folgt."
+    "description": "Noch ohne Notiz."
   },
   {
     "number": 79,
     "title": "Die drei ??? Im Bann des Voodoo",
-    "era": "TBD",
+    "era": "Die Triumvirats-Ära",
     "spookiness": 0,
-    "description": "Beschreibung folgt."
+    "description": "Noch ohne Notiz."
   },
   {
     "number": 80,
     "title": "Die drei ??? Geheimakte Ufo",
-    "era": "TBD",
+    "era": "Die Triumvirats-Ära",
     "spookiness": 0,
-    "description": "Beschreibung folgt."
+    "description": "Noch ohne Notiz."
   },
   {
     "number": 81,
     "title": "Die drei ??? Verdeckte Fouls",
-    "era": "TBD",
+    "era": "Die Triumvirats-Ära",
     "spookiness": 0,
-    "description": "Beschreibung folgt."
+    "description": "Noch ohne Notiz."
   },
   {
     "number": 82,
     "title": "Die drei ??? Die Karten des Bösen",
-    "era": "TBD",
+    "era": "Die Triumvirats-Ära",
     "spookiness": 0,
-    "description": "Beschreibung folgt."
+    "description": "Noch ohne Notiz."
   },
   {
     "number": 83,
     "title": "Die drei ??? Meuterei auf hoher See",
-    "era": "TBD",
+    "era": "Die Triumvirats-Ära",
     "spookiness": 0,
-    "description": "Beschreibung folgt."
+    "description": "Noch ohne Notiz."
   },
   {
     "number": 84,
     "title": "Die drei ??? Musik des Teufels",
-    "era": "TBD",
+    "era": "Die Triumvirats-Ära",
     "spookiness": 0,
-    "description": "Beschreibung folgt."
+    "description": "Noch ohne Notiz."
   },
   {
     "number": 85,
     "title": "Die drei ??? Feuerturm",
-    "era": "TBD",
+    "era": "Die Triumvirats-Ära",
     "spookiness": 0,
-    "description": "Beschreibung folgt."
+    "description": "Noch ohne Notiz."
   },
   {
     "number": 86,
     "title": "Die drei ??? Nacht in Angst",
-    "era": "TBD",
+    "era": "Die Triumvirats-Ära",
     "spookiness": 0,
-    "description": "Beschreibung folgt."
+    "description": "Noch ohne Notiz."
   },
   {
     "number": 87,
     "title": "Die drei ??? Wolfsgesicht",
-    "era": "TBD",
+    "era": "Die Triumvirats-Ära",
     "spookiness": 0,
-    "description": "Beschreibung folgt."
+    "description": "Noch ohne Notiz."
   },
   {
     "number": 88,
     "title": "Die drei ??? Vampir im Internet",
-    "era": "TBD",
+    "era": "Die Triumvirats-Ära",
     "spookiness": 0,
-    "description": "Beschreibung folgt."
+    "description": "Noch ohne Notiz."
   },
   {
     "number": 89,
     "title": "Die drei ??? Tödliche Spur",
-    "era": "TBD",
+    "era": "Die Triumvirats-Ära",
     "spookiness": 0,
-    "description": "Beschreibung folgt."
+    "description": "Noch ohne Notiz."
   },
   {
     "number": 90,
     "title": "Die drei ??? Der Feuerteufel",
-    "era": "TBD",
+    "era": "Die Triumvirats-Ära",
     "spookiness": 0,
-    "description": "Beschreibung folgt."
+    "description": "Noch ohne Notiz."
   },
   {
     "number": 91,
     "title": "Die drei ??? Labyrinth der Götter",
-    "era": "TBD",
+    "era": "Die Triumvirats-Ära",
     "spookiness": 0,
-    "description": "Beschreibung folgt."
+    "description": "Noch ohne Notiz."
   },
   {
     "number": 92,
     "title": "Die drei ??? Todesflug",
-    "era": "TBD",
+    "era": "Die Triumvirats-Ära",
     "spookiness": 0,
-    "description": "Beschreibung folgt."
+    "description": "Noch ohne Notiz."
   },
   {
     "number": 93,
     "title": "Die drei ??? und das Geisterschiff",
-    "era": "TBD",
+    "era": "Die Triumvirats-Ära",
     "spookiness": 0,
-    "description": "Beschreibung folgt."
+    "description": "Noch ohne Notiz."
   },
   {
     "number": 94,
     "title": "Die drei ??? Das schwarze Monster",
-    "era": "TBD",
+    "era": "Die Triumvirats-Ära",
     "spookiness": 0,
-    "description": "Beschreibung folgt."
+    "description": "Noch ohne Notiz."
   },
   {
     "number": 95,
     "title": "Die drei ??? Botschaft von Geisterhand",
-    "era": "TBD",
+    "era": "Die Triumvirats-Ära",
     "spookiness": 0,
-    "description": "Beschreibung folgt."
+    "description": "Noch ohne Notiz."
   },
   {
     "number": 96,
     "title": "Die drei ??? und der rote Rächer",
-    "era": "TBD",
+    "era": "Die Triumvirats-Ära",
     "spookiness": 0,
-    "description": "Beschreibung folgt."
+    "description": "Noch ohne Notiz."
   },
   {
     "number": 97,
     "title": "Die drei ??? Insektenstachel",
-    "era": "TBD",
+    "era": "Die Triumvirats-Ära",
     "spookiness": 0,
-    "description": "Beschreibung folgt."
+    "description": "Noch ohne Notiz."
   },
   {
     "number": 98,
     "title": "Die drei ??? Tal des Schreckens",
-    "era": "TBD",
+    "era": "Die Triumvirats-Ära",
     "spookiness": 0,
-    "description": "Beschreibung folgt."
+    "description": "Noch ohne Notiz."
   },
   {
     "number": 99,
     "title": "Die drei ??? Rufmord",
-    "era": "TBD",
+    "era": "Die Triumvirats-Ära",
     "spookiness": 0,
-    "description": "Beschreibung folgt."
+    "description": "Noch ohne Notiz."
   },
   {
     "number": 100,
     "title": "Die drei ??? Toteninsel",
-    "era": "TBD",
+    "era": "Die Triumvirats-Ära",
     "spookiness": 0,
-    "description": "Beschreibung folgt."
+    "description": "Noch ohne Notiz."
   },
   {
     "number": 101,
     "title": "Die drei ??? und das Hexenhandy",
-    "era": "TBD",
+    "era": "Die Triumvirats-Ära",
     "spookiness": 0,
-    "description": "Beschreibung folgt."
+    "description": "Noch ohne Notiz."
   },
   {
     "number": 102,
     "title": "Die drei ??? Doppelte Täuschung",
-    "era": "TBD",
+    "era": "Die Triumvirats-Ära",
     "spookiness": 0,
-    "description": "Beschreibung folgt."
+    "description": "Noch ohne Notiz."
   },
   {
     "number": 103,
     "title": "Die drei ??? Das Erbe des Meisterdiebs",
-    "era": "TBD",
+    "era": "Die Triumvirats-Ära",
     "spookiness": 0,
-    "description": "Beschreibung folgt."
+    "description": "Noch ohne Notiz."
   },
   {
     "number": 104,
     "title": "Die drei ??? Gift per E-Mail",
-    "era": "TBD",
+    "era": "Die Triumvirats-Ära",
     "spookiness": 0,
-    "description": "Beschreibung folgt."
+    "description": "Noch ohne Notiz."
   },
   {
     "number": 105,
     "title": "Die drei ??? und der Nebelberg",
-    "era": "TBD",
+    "era": "Die Triumvirats-Ära",
     "spookiness": 0,
-    "description": "Beschreibung folgt."
+    "description": "Noch ohne Notiz."
   },
   {
     "number": 106,
     "title": "Die drei ??? Der Mann ohne Kopf",
-    "era": "TBD",
+    "era": "Die Triumvirats-Ära",
     "spookiness": 0,
-    "description": "Beschreibung folgt."
+    "description": "Noch ohne Notiz."
   },
   {
     "number": 107,
     "title": "Die drei ??? und der Schatz der Mönche",
-    "era": "TBD",
+    "era": "Die Triumvirats-Ära",
     "spookiness": 0,
-    "description": "Beschreibung folgt."
+    "description": "Noch ohne Notiz."
   },
   {
     "number": 108,
     "title": "Die drei ??? Die sieben Tore",
-    "era": "TBD",
+    "era": "Die Triumvirats-Ära",
     "spookiness": 0,
-    "description": "Beschreibung folgt."
+    "description": "Noch ohne Notiz."
   },
   {
     "number": 109,
     "title": "Die drei ??? Gefährliches Quiz",
-    "era": "TBD",
+    "era": "Die Triumvirats-Ära",
     "spookiness": 0,
-    "description": "Beschreibung folgt."
+    "description": "Noch ohne Notiz."
   },
   {
     "number": 110,
     "title": "Die drei ??? Panik im Park",
-    "era": "TBD",
+    "era": "Die Triumvirats-Ära",
     "spookiness": 0,
-    "description": "Beschreibung folgt."
+    "description": "Noch ohne Notiz."
   },
   {
     "number": 111,
     "title": "Die drei ??? Die Höhle des Grauens",
-    "era": "TBD",
+    "era": "Die Triumvirats-Ära",
     "spookiness": 0,
-    "description": "Beschreibung folgt."
+    "description": "Noch ohne Notiz."
   },
   {
     "number": 112,
     "title": "Die drei ??? Schlucht der Dämonen",
-    "era": "TBD",
+    "era": "Die Triumvirats-Ära",
     "spookiness": 0,
-    "description": "Beschreibung folgt."
+    "description": "Noch ohne Notiz."
   },
   {
     "number": 113,
     "title": "Die drei ??? Das Auge des Drachen",
-    "era": "TBD",
+    "era": "Die Triumvirats-Ära",
     "spookiness": 0,
-    "description": "Beschreibung folgt."
+    "description": "Noch ohne Notiz."
   },
   {
     "number": 114,
     "title": "Die drei ??? Die Villa der Toten",
-    "era": "TBD",
+    "era": "Die Triumvirats-Ära",
     "spookiness": 0,
-    "description": "Beschreibung folgt."
+    "description": "Noch ohne Notiz."
   },
   {
     "number": 115,
     "title": "Die drei ??? Auf tödlichem Kurs",
-    "era": "TBD",
+    "era": "Die Triumvirats-Ära",
     "spookiness": 0,
-    "description": "Beschreibung folgt."
+    "description": "Noch ohne Notiz."
   },
   {
     "number": 116,
     "title": "Die drei ??? Codename: Cobra",
-    "era": "TBD",
+    "era": "Die Triumvirats-Ära",
     "spookiness": 0,
-    "description": "Beschreibung folgt."
+    "description": "Noch ohne Notiz."
   },
   {
     "number": 117,
     "title": "Die drei ??? Der finstere Rivale",
-    "era": "TBD",
+    "era": "Die Triumvirats-Ära",
     "spookiness": 0,
-    "description": "Beschreibung folgt."
+    "description": "Noch ohne Notiz."
   },
   {
     "number": 118,
     "title": "Die drei ??? Das düstere Vermächtnis",
-    "era": "TBD",
+    "era": "Die Triumvirats-Ära",
     "spookiness": 0,
-    "description": "Beschreibung folgt."
+    "description": "Noch ohne Notiz."
   },
   {
     "number": 119,
     "title": "Die drei ??? Der geheime Schlüssel",
-    "era": "TBD",
+    "era": "Die Triumvirats-Ära",
     "spookiness": 0,
-    "description": "Beschreibung folgt."
+    "description": "Noch ohne Notiz."
   },
   {
     "number": 120,
     "title": "Die drei ??? Der schwarze Skorpion",
-    "era": "TBD",
+    "era": "Die Neuzeit",
     "spookiness": 0,
-    "description": "Beschreibung folgt."
+    "description": "Noch ohne Notiz."
   },
   {
     "number": 121,
     "title": "Die drei ??? Spur ins Nichts",
-    "era": "TBD",
+    "era": "Die Neuzeit",
     "spookiness": 0,
-    "description": "Beschreibung folgt."
+    "description": "Noch ohne Notiz."
   },
   {
     "number": 122,
     "title": "Die drei ??? und der Geisterzug",
-    "era": "TBD",
+    "era": "Die Neuzeit",
     "spookiness": 0,
-    "description": "Beschreibung folgt."
+    "description": "Noch ohne Notiz."
   },
   {
     "number": 123,
     "title": "Die drei ??? Fußballfieber",
-    "era": "TBD",
+    "era": "Die Neuzeit",
     "spookiness": 0,
-    "description": "Beschreibung folgt."
+    "description": "Noch ohne Notiz."
   },
   {
     "number": 124,
     "title": "Die drei ??? Geister-Canyon",
-    "era": "TBD",
+    "era": "Die Neuzeit",
     "spookiness": 0,
-    "description": "Beschreibung folgt."
+    "description": "Noch ohne Notiz."
   },
   {
     "number": 125,
     "title": "Die drei ??? Feuermond",
-    "era": "TBD",
+    "era": "Die Neuzeit",
     "spookiness": 0,
-    "description": "Beschreibung folgt."
+    "description": "Noch ohne Notiz."
   },
   {
     "number": 126,
     "title": "Die drei ??? Schrecken aus dem Moor",
-    "era": "TBD",
+    "era": "Die Neuzeit",
     "spookiness": 0,
-    "description": "Beschreibung folgt."
+    "description": "Noch ohne Notiz."
   },
   {
     "number": 127,
     "title": "Die drei ??? Schwarze Madonna",
-    "era": "TBD",
+    "era": "Die Neuzeit",
     "spookiness": 0,
-    "description": "Beschreibung folgt."
+    "description": "Noch ohne Notiz."
   },
   {
     "number": 128,
     "title": "Die drei ??? Schatten über Hollywood",
-    "era": "TBD",
+    "era": "Die Neuzeit",
     "spookiness": 0,
-    "description": "Beschreibung folgt."
+    "description": "Noch ohne Notiz."
   },
   {
     "number": 129,
     "title": "Die drei ??? SMS aus dem Grab",
-    "era": "TBD",
+    "era": "Die Neuzeit",
     "spookiness": 0,
-    "description": "Beschreibung folgt."
+    "description": "Noch ohne Notiz."
   },
   {
     "number": 130,
     "title": "Die drei ??? Der Fluch des Drachen",
-    "era": "TBD",
+    "era": "Die Neuzeit",
     "spookiness": 0,
-    "description": "Beschreibung folgt."
+    "description": "Noch ohne Notiz."
   },
   {
     "number": 131,
     "title": "Die drei ??? Haus des Schreckens",
-    "era": "TBD",
+    "era": "Die Neuzeit",
     "spookiness": 0,
-    "description": "Beschreibung folgt."
+    "description": "Noch ohne Notiz."
   },
   {
     "number": 132,
     "title": "Die drei ??? Spuk im Netz",
-    "era": "TBD",
+    "era": "Die Neuzeit",
     "spookiness": 0,
-    "description": "Beschreibung folgt."
+    "description": "Noch ohne Notiz."
   },
   {
     "number": 133,
     "title": "Die drei ??? Fels der Dämonen",
-    "era": "TBD",
+    "era": "Die Neuzeit",
     "spookiness": 0,
-    "description": "Beschreibung folgt."
+    "description": "Noch ohne Notiz."
   },
   {
     "number": 134,
     "title": "Die drei ??? Der tote Mönch",
-    "era": "TBD",
+    "era": "Die Neuzeit",
     "spookiness": 0,
-    "description": "Beschreibung folgt."
+    "description": "Noch ohne Notiz."
   },
   {
     "number": 135,
     "title": "Die drei ??? Fluch des Piraten",
-    "era": "TBD",
+    "era": "Die Neuzeit",
     "spookiness": 0,
-    "description": "Beschreibung folgt."
+    "description": "Noch ohne Notiz."
   },
   {
     "number": 136,
     "title": "Die drei ??? und das versunkene Dorf",
-    "era": "TBD",
+    "era": "Die Neuzeit",
     "spookiness": 0,
-    "description": "Beschreibung folgt."
+    "description": "Noch ohne Notiz."
   },
   {
     "number": 137,
     "title": "Die drei ??? Pfad der Angst",
-    "era": "TBD",
+    "era": "Die Neuzeit",
     "spookiness": 0,
-    "description": "Beschreibung folgt."
+    "description": "Noch ohne Notiz."
   },
   {
     "number": 138,
     "title": "Die drei ??? Die geheime Treppe",
-    "era": "TBD",
+    "era": "Die Neuzeit",
     "spookiness": 0,
-    "description": "Beschreibung folgt."
+    "description": "Noch ohne Notiz."
   },
   {
     "number": 139,
     "title": "Die drei ??? Das Geheimnis der Diva",
-    "era": "TBD",
+    "era": "Die Neuzeit",
     "spookiness": 0,
-    "description": "Beschreibung folgt."
+    "description": "Noch ohne Notiz."
   },
   {
     "number": 140,
     "title": "Die drei ??? Stadt der Vampire",
-    "era": "TBD",
+    "era": "Die Neuzeit",
     "spookiness": 0,
-    "description": "Beschreibung folgt."
+    "description": "Noch ohne Notiz."
   },
   {
     "number": 141,
     "title": "Die drei ??? und die Fußball-Falle",
-    "era": "TBD",
+    "era": "Die Neuzeit",
     "spookiness": 0,
-    "description": "Beschreibung folgt."
+    "description": "Noch ohne Notiz."
   },
   {
     "number": 142,
     "title": "Die drei ??? Tödliches Eis",
-    "era": "TBD",
+    "era": "Die Neuzeit",
     "spookiness": 0,
-    "description": "Beschreibung folgt."
+    "description": "Noch ohne Notiz."
   },
   {
     "number": 143,
     "title": "Die drei ??? und die Poker-Hölle",
-    "era": "TBD",
+    "era": "Die Neuzeit",
     "spookiness": 0,
-    "description": "Beschreibung folgt."
+    "description": "Noch ohne Notiz."
   },
   {
     "number": 144,
     "title": "Die drei ??? Zwillinge der Finsternis",
-    "era": "TBD",
+    "era": "Die Neuzeit",
     "spookiness": 0,
-    "description": "Beschreibung folgt."
+    "description": "Noch ohne Notiz."
   },
   {
     "number": 145,
     "title": "Die drei ??? und die Rache der Samurai",
-    "era": "TBD",
+    "era": "Die Neuzeit",
     "spookiness": 0,
-    "description": "Beschreibung folgt."
+    "description": "Noch ohne Notiz."
   },
   {
     "number": 146,
     "title": "Die drei ??? Der Biss der Bestie",
-    "era": "TBD",
+    "era": "Die Neuzeit",
     "spookiness": 0,
-    "description": "Beschreibung folgt."
+    "description": "Noch ohne Notiz."
   },
   {
     "number": 147,
     "title": "Die drei ??? Grusel auf Campbell Castle",
-    "era": "TBD",
+    "era": "Die Neuzeit",
     "spookiness": 0,
-    "description": "Beschreibung folgt."
+    "description": "Noch ohne Notiz."
   },
   {
     "number": 148,
     "title": "Die drei ??? und die feurige Flut",
-    "era": "TBD",
+    "era": "Die Neuzeit",
     "spookiness": 0,
-    "description": "Beschreibung folgt."
+    "description": "Noch ohne Notiz."
   },
   {
     "number": 149,
     "title": "Die drei ??? Der namenlose Gegner",
-    "era": "TBD",
+    "era": "Die Neuzeit",
     "spookiness": 0,
-    "description": "Beschreibung folgt."
+    "description": "Noch ohne Notiz."
   },
   {
     "number": 150,
     "title": "Die drei ??? Geisterbucht",
-    "era": "TBD",
+    "era": "Die Neuzeit",
     "spookiness": 0,
-    "description": "Beschreibung folgt."
+    "description": "Noch ohne Notiz."
   },
   {
     "number": 151,
     "title": "Die drei ??? Schwarze Sonne",
-    "era": "TBD",
+    "era": "Die Neuzeit",
     "spookiness": 0,
-    "description": "Beschreibung folgt."
+    "description": "Noch ohne Notiz."
   },
   {
     "number": 152,
     "title": "Die drei ??? Skateboardfieber",
-    "era": "TBD",
+    "era": "Die Neuzeit",
     "spookiness": 0,
-    "description": "Beschreibung folgt."
+    "description": "Noch ohne Notiz."
   },
   {
     "number": 153,
     "title": "Die drei ??? und das Fußballphantom",
-    "era": "TBD",
+    "era": "Die Neuzeit",
     "spookiness": 0,
-    "description": "Beschreibung folgt."
+    "description": "Noch ohne Notiz."
   },
   {
     "number": 154,
     "title": "Die drei ??? Botschaft aus der Unterwelt",
-    "era": "TBD",
+    "era": "Die Neuzeit",
     "spookiness": 0,
-    "description": "Beschreibung folgt."
+    "description": "Noch ohne Notiz."
   },
   {
     "number": 155,
     "title": "Die drei ??? und der Meister des Todes",
-    "era": "TBD",
+    "era": "Die Neuzeit",
     "spookiness": 0,
-    "description": "Beschreibung folgt."
+    "description": "Noch ohne Notiz."
   },
   {
     "number": 156,
     "title": "Die drei ??? Im Netz des Drachen",
-    "era": "TBD",
+    "era": "Die Neuzeit",
     "spookiness": 0,
-    "description": "Beschreibung folgt."
+    "description": "Noch ohne Notiz."
   },
   {
     "number": 157,
     "title": "Die drei ??? Im Zeichen der Schlangen",
-    "era": "TBD",
+    "era": "Die Neuzeit",
     "spookiness": 0,
-    "description": "Beschreibung folgt."
+    "description": "Noch ohne Notiz."
   },
   {
     "number": 158,
     "title": "Die drei ??? und der Feuergeist",
-    "era": "TBD",
+    "era": "Die Neuzeit",
     "spookiness": 0,
-    "description": "Beschreibung folgt."
+    "description": "Noch ohne Notiz."
   },
   {
     "number": 159,
     "title": "Die drei ??? Nacht der Tiger",
-    "era": "TBD",
+    "era": "Die Neuzeit",
     "spookiness": 0,
-    "description": "Beschreibung folgt."
+    "description": "Noch ohne Notiz."
   },
   {
     "number": 160,
     "title": "Die drei ??? Geheimnisvolle Botschaften",
-    "era": "TBD",
+    "era": "Die Neuzeit",
     "spookiness": 0,
-    "description": "Beschreibung folgt."
+    "description": "Noch ohne Notiz."
   },
   {
     "number": 161,
     "title": "Die drei ??? Die blutenden Bilder",
-    "era": "TBD",
+    "era": "Die Neuzeit",
     "spookiness": 0,
-    "description": "Beschreibung folgt."
+    "description": "Noch ohne Notiz."
   },
   {
     "number": 162,
     "title": "Die drei ??? und der schreiende Nebel",
-    "era": "TBD",
+    "era": "Die Neuzeit",
     "spookiness": 0,
-    "description": "Beschreibung folgt."
+    "description": "Noch ohne Notiz."
   },
   {
     "number": 163,
     "title": "Die drei ??? und der verschollene Pilot",
-    "era": "TBD",
+    "era": "Die Neuzeit",
     "spookiness": 0,
-    "description": "Beschreibung folgt."
+    "description": "Noch ohne Notiz."
   },
   {
     "number": 164,
     "title": "Die drei ??? Fußball-Teufel",
-    "era": "TBD",
+    "era": "Die Neuzeit",
     "spookiness": 0,
-    "description": "Beschreibung folgt."
+    "description": "Noch ohne Notiz."
   },
   {
     "number": 165,
     "title": "Die drei ??? Im Schatten des Giganten",
-    "era": "TBD",
+    "era": "Die Neuzeit",
     "spookiness": 0,
-    "description": "Beschreibung folgt."
+    "description": "Noch ohne Notiz."
   },
   {
     "number": 166,
     "title": "Die drei ??? und die brennende Stadt",
-    "era": "TBD",
+    "era": "Die Neuzeit",
     "spookiness": 0,
-    "description": "Beschreibung folgt."
+    "description": "Noch ohne Notiz."
   },
   {
     "number": 167,
     "title": "Die drei ??? und das blaue Biest",
-    "era": "TBD",
+    "era": "Die Neuzeit",
     "spookiness": 0,
-    "description": "Beschreibung folgt."
+    "description": "Noch ohne Notiz."
   },
   {
     "number": 168,
     "title": "Die drei ??? GPS-Gangster",
-    "era": "TBD",
+    "era": "Die Neuzeit",
     "spookiness": 0,
-    "description": "Beschreibung folgt."
+    "description": "Noch ohne Notiz."
   },
   {
     "number": 169,
     "title": "Die drei ??? Die Spur des Spielers",
-    "era": "TBD",
+    "era": "Die Neuzeit",
     "spookiness": 0,
-    "description": "Beschreibung folgt."
+    "description": "Noch ohne Notiz."
   },
   {
     "number": 170,
     "title": "Die drei ??? Straße des Grauens",
-    "era": "TBD",
+    "era": "Die Neuzeit",
     "spookiness": 0,
-    "description": "Beschreibung folgt."
+    "description": "Noch ohne Notiz."
   },
   {
     "number": 171,
     "title": "Die drei ??? und das Phantom aus dem Meer",
-    "era": "TBD",
+    "era": "Die Neuzeit",
     "spookiness": 0,
-    "description": "Beschreibung folgt."
+    "description": "Noch ohne Notiz."
   },
   {
     "number": 172,
     "title": "Die drei ??? und der Eisenmann",
-    "era": "TBD",
+    "era": "Die Neuzeit",
     "spookiness": 0,
-    "description": "Beschreibung folgt."
+    "description": "Noch ohne Notiz."
   },
   {
     "number": 173,
     "title": "Die drei ??? Dämon der Rache",
-    "era": "TBD",
+    "era": "Die Neuzeit",
     "spookiness": 0,
-    "description": "Beschreibung folgt."
+    "description": "Noch ohne Notiz."
   },
   {
     "number": 174,
     "title": "Die drei ??? und das Tuch der Toten",
-    "era": "TBD",
+    "era": "Die Neuzeit",
     "spookiness": 0,
-    "description": "Beschreibung folgt."
+    "description": "Noch ohne Notiz."
   },
   {
     "number": 175,
     "title": "Die drei ??? Schattenwelt",
-    "era": "TBD",
+    "era": "Die Neuzeit",
     "spookiness": 0,
-    "description": "Beschreibung folgt."
+    "description": "Noch ohne Notiz."
   },
   {
     "number": 176,
     "title": "Die drei ??? und der gestohlene Sieg",
-    "era": "TBD",
+    "era": "Die Neuzeit",
     "spookiness": 0,
-    "description": "Beschreibung folgt."
+    "description": "Noch ohne Notiz."
   },
   {
     "number": 177,
     "title": "Die drei ??? Der Geist des Goldgräbers",
-    "era": "TBD",
+    "era": "Die Neuzeit",
     "spookiness": 0,
-    "description": "Beschreibung folgt."
+    "description": "Noch ohne Notiz."
   },
   {
     "number": 178,
     "title": "Die drei ??? Der gefiederte Schrecken",
-    "era": "TBD",
+    "era": "Die Neuzeit",
     "spookiness": 0,
-    "description": "Beschreibung folgt."
+    "description": "Noch ohne Notiz."
   },
   {
     "number": 179,
     "title": "Die drei ??? Die Rache des Untoten",
-    "era": "TBD",
+    "era": "Die Neuzeit",
     "spookiness": 0,
-    "description": "Beschreibung folgt."
+    "description": "Noch ohne Notiz."
   },
   {
     "number": 180,
     "title": "Die drei ??? und die flüsternden Puppen",
-    "era": "TBD",
+    "era": "Die Neuzeit",
     "spookiness": 0,
-    "description": "Beschreibung folgt."
+    "description": "Noch ohne Notiz."
   },
   {
     "number": 181,
     "title": "Die drei ??? Das Kabinett des Zauberers",
-    "era": "TBD",
+    "era": "Die Neuzeit",
     "spookiness": 0,
-    "description": "Beschreibung folgt."
+    "description": "Noch ohne Notiz."
   },
   {
     "number": 182,
     "title": "Die drei ??? Im Haus des Henkers",
-    "era": "TBD",
+    "era": "Die Neuzeit",
     "spookiness": 0,
-    "description": "Beschreibung folgt."
+    "description": "Noch ohne Notiz."
   },
   {
     "number": 183,
     "title": "Die drei ??? und der letzte Song",
-    "era": "TBD",
+    "era": "Die Neuzeit",
     "spookiness": 0,
-    "description": "Beschreibung folgt."
+    "description": "Noch ohne Notiz."
   },
   {
     "number": 184,
     "title": "Die drei ??? und der Hexengarten",
-    "era": "TBD",
+    "era": "Die Neuzeit",
     "spookiness": 0,
-    "description": "Beschreibung folgt."
+    "description": "Noch ohne Notiz."
   },
   {
     "number": 185,
     "title": "Die drei ??? und der Mann ohne Augen",
-    "era": "TBD",
+    "era": "Die Neuzeit",
     "spookiness": 0,
-    "description": "Beschreibung folgt."
+    "description": "Noch ohne Notiz."
   },
   {
     "number": 186,
     "title": "Die drei ??? Insel des Vergessens",
-    "era": "TBD",
+    "era": "Die Neuzeit",
     "spookiness": 0,
-    "description": "Beschreibung folgt."
+    "description": "Noch ohne Notiz."
   },
   {
     "number": 187,
     "title": "Die drei ??? und das silberne Amulett",
-    "era": "TBD",
+    "era": "Die Neuzeit",
     "spookiness": 0,
-    "description": "Beschreibung folgt."
+    "description": "Noch ohne Notiz."
   },
   {
     "number": 188,
     "title": "Die drei ??? Signale aus dem Jenseits",
-    "era": "TBD",
+    "era": "Die Neuzeit",
     "spookiness": 0,
-    "description": "Beschreibung folgt."
+    "description": "Noch ohne Notiz."
   },
   {
     "number": 189,
     "title": "Die drei ??? und der unsichtbare Passagier",
-    "era": "TBD",
+    "era": "Die Neuzeit",
     "spookiness": 0,
-    "description": "Beschreibung folgt."
+    "description": "Noch ohne Notiz."
   },
   {
     "number": 190,
     "title": "Die drei ??? und die Kammer der Rätsel",
-    "era": "TBD",
+    "era": "Die Neuzeit",
     "spookiness": 0,
-    "description": "Beschreibung folgt."
+    "description": "Noch ohne Notiz."
   },
   {
     "number": 191,
     "title": "Die drei ??? Verbrechen im Nichts",
-    "era": "TBD",
+    "era": "Die Neuzeit",
     "spookiness": 0,
-    "description": "Beschreibung folgt."
+    "description": "Noch ohne Notiz."
   },
   {
     "number": 192,
     "title": "Die drei ??? Im Bann des Drachen",
-    "era": "TBD",
+    "era": "Die Neuzeit",
     "spookiness": 0,
-    "description": "Beschreibung folgt."
+    "description": "Noch ohne Notiz."
   },
   {
     "number": 193,
     "title": "Die drei ??? Schrecken aus der Tiefe",
-    "era": "TBD",
+    "era": "Die Neuzeit",
     "spookiness": 0,
-    "description": "Beschreibung folgt."
+    "description": "Noch ohne Notiz."
   },
   {
     "number": 194,
     "title": "Die drei ??? und die Zeitreisende",
-    "era": "TBD",
+    "era": "Die Neuzeit",
     "spookiness": 0,
-    "description": "Beschreibung folgt."
+    "description": "Noch ohne Notiz."
   },
   {
     "number": 195,
     "title": "Die drei ??? Im Reich der Ungeheuer",
-    "era": "TBD",
+    "era": "Die Neuzeit",
     "spookiness": 0,
-    "description": "Beschreibung folgt."
+    "description": "Noch ohne Notiz."
   },
   {
     "number": 196,
     "title": "Die drei ??? Geheimnis des Bauchredners",
-    "era": "TBD",
+    "era": "Die Neuzeit",
     "spookiness": 0,
-    "description": "Beschreibung folgt."
+    "description": "Noch ohne Notiz."
   },
   {
     "number": 197,
     "title": "Die drei ??? Im Auge des Sturms",
-    "era": "TBD",
+    "era": "Die Neuzeit",
     "spookiness": 0,
-    "description": "Beschreibung folgt."
+    "description": "Noch ohne Notiz."
   },
   {
     "number": 198,
     "title": "Die drei ??? Die Legende der Gaukler",
-    "era": "TBD",
+    "era": "Die Neuzeit",
     "spookiness": 0,
-    "description": "Beschreibung folgt."
+    "description": "Noch ohne Notiz."
   },
   {
     "number": 199,
     "title": "Die drei ??? und der grüne Kobold",
-    "era": "TBD",
+    "era": "Die Neuzeit",
     "spookiness": 0,
-    "description": "Beschreibung folgt."
+    "description": "Noch ohne Notiz."
   },
   {
     "number": 200,
     "title": "Die drei ??? Feuriges Auge",
-    "era": "TBD",
+    "era": "Die Neuzeit",
     "spookiness": 0,
-    "description": "Beschreibung folgt."
+    "description": "Noch ohne Notiz."
   },
   {
     "number": 201,
     "title": "Die drei ??? Höhenangst",
-    "era": "TBD",
+    "era": "Die Neuzeit",
     "spookiness": 0,
-    "description": "Beschreibung folgt."
+    "description": "Noch ohne Notiz."
   },
   {
     "number": 202,
     "title": "Die drei ??? Das weiße Grab",
-    "era": "TBD",
+    "era": "Die Neuzeit",
     "spookiness": 0,
-    "description": "Beschreibung folgt."
+    "description": "Noch ohne Notiz."
   },
   {
     "number": 203,
     "title": "Die drei ??? Tauchgang ins Ungewisse",
-    "era": "TBD",
+    "era": "Die Neuzeit",
     "spookiness": 0,
-    "description": "Beschreibung folgt."
+    "description": "Noch ohne Notiz."
   },
   {
     "number": 204,
     "title": "Die drei ??? Der dunkle Wächter",
-    "era": "TBD",
+    "era": "Die Neuzeit",
     "spookiness": 0,
-    "description": "Beschreibung folgt."
+    "description": "Noch ohne Notiz."
   },
   {
     "number": 205,
     "title": "Die drei ??? Das rätselhafte Erbe",
-    "era": "TBD",
+    "era": "Die Neuzeit",
     "spookiness": 0,
-    "description": "Beschreibung folgt."
+    "description": "Noch ohne Notiz."
   },
   {
     "number": 206,
     "title": "Die drei ??? und der Mottenmann",
-    "era": "TBD",
+    "era": "Die Neuzeit",
     "spookiness": 0,
-    "description": "Beschreibung folgt."
+    "description": "Noch ohne Notiz."
   },
   {
     "number": 207,
     "title": "Die drei ??? Die falschen Detektive",
-    "era": "TBD",
+    "era": "Die Neuzeit",
     "spookiness": 0,
-    "description": "Beschreibung folgt."
+    "description": "Noch ohne Notiz."
   },
   {
     "number": 208,
     "title": "Die drei ??? Kelch des Schicksals",
-    "era": "TBD",
+    "era": "Die Neuzeit",
     "spookiness": 0,
-    "description": "Beschreibung folgt."
+    "description": "Noch ohne Notiz."
   },
   {
     "number": 209,
     "title": "Die drei ??? Kreaturen der Nacht",
-    "era": "TBD",
+    "era": "Die Neuzeit",
     "spookiness": 0,
-    "description": "Beschreibung folgt."
+    "description": "Noch ohne Notiz."
   },
   {
     "number": 210,
     "title": "Die drei ??? und die schweigende Grotte",
-    "era": "TBD",
+    "era": "Die Neuzeit",
     "spookiness": 0,
-    "description": "Beschreibung folgt."
+    "description": "Noch ohne Notiz."
   },
   {
     "number": 211,
     "title": "Die drei ??? und der Jadekönig",
-    "era": "TBD",
+    "era": "Die Neuzeit",
     "spookiness": 0,
-    "description": "Beschreibung folgt."
+    "description": "Noch ohne Notiz."
   },
   {
     "number": 212,
     "title": "Die drei ??? und der weiße Leopard",
-    "era": "TBD",
+    "era": "Die Neuzeit",
     "spookiness": 0,
-    "description": "Beschreibung folgt."
+    "description": "Noch ohne Notiz."
   },
   {
     "number": 213,
     "title": "Die drei ??? Der Fluch der Medusa",
-    "era": "TBD",
+    "era": "Die Neuzeit",
     "spookiness": 0,
-    "description": "Beschreibung folgt."
+    "description": "Noch ohne Notiz."
   },
   {
     "number": 214,
     "title": "Die drei ??? und der Geisterbunker",
-    "era": "TBD",
+    "era": "Die Neuzeit",
     "spookiness": 0,
-    "description": "Beschreibung folgt."
+    "description": "Noch ohne Notiz."
   },
   {
     "number": 215,
     "title": "Die drei ??? und die verlorene Zeit",
-    "era": "TBD",
+    "era": "Die Neuzeit",
     "spookiness": 0,
-    "description": "Beschreibung folgt."
+    "description": "Noch ohne Notiz."
   },
   {
     "number": 216,
     "title": "Die drei ??? Die Schwingen des Unheils",
-    "era": "TBD",
+    "era": "Die Neuzeit",
     "spookiness": 0,
-    "description": "Beschreibung folgt."
+    "description": "Noch ohne Notiz."
   },
   {
     "number": 217,
     "title": "Die drei ??? und der Kristallschädel",
-    "era": "TBD",
+    "era": "Die Neuzeit",
     "spookiness": 0,
-    "description": "Beschreibung folgt."
+    "description": "Noch ohne Notiz."
   },
   {
     "number": 218,
     "title": "Die drei ??? Im Netz der Lügen",
-    "era": "TBD",
+    "era": "Die Neuzeit",
     "spookiness": 0,
-    "description": "Beschreibung folgt."
+    "description": "Noch ohne Notiz."
   },
   {
     "number": 219,
     "title": "Die drei ??? und die Teufelsklippe",
-    "era": "TBD",
+    "era": "Die Neuzeit",
     "spookiness": 0,
-    "description": "Beschreibung folgt."
+    "description": "Noch ohne Notiz."
   },
   {
     "number": 220,
     "title": "Die drei ??? Im Wald der Gefahren",
-    "era": "TBD",
+    "era": "Die Neuzeit",
     "spookiness": 0,
-    "description": "Beschreibung folgt."
+    "description": "Noch ohne Notiz."
   },
   {
     "number": 221,
     "title": "Die drei ??? Manuskript des Satans",
-    "era": "TBD",
+    "era": "Die Neuzeit",
     "spookiness": 0,
-    "description": "Beschreibung folgt."
+    "description": "Noch ohne Notiz."
   },
   {
     "number": 222,
     "title": "Die drei ??? und die Gesetzlosen",
-    "era": "TBD",
+    "era": "Die Neuzeit",
     "spookiness": 0,
-    "description": "Beschreibung folgt."
+    "description": "Noch ohne Notiz."
   },
   {
     "number": 223,
     "title": "Die drei ??? und der Knochenmann",
-    "era": "TBD",
+    "era": "Die Neuzeit",
     "spookiness": 0,
-    "description": "Beschreibung folgt."
+    "description": "Noch ohne Notiz."
   },
   {
     "number": 224,
     "title": "Die drei ??? Die Yacht des Verrats",
-    "era": "TBD",
+    "era": "Die Neuzeit",
     "spookiness": 0,
-    "description": "Beschreibung folgt."
+    "description": "Noch ohne Notiz."
   },
   {
     "number": 225,
     "title": "Die drei ??? und der Puppenmacher",
-    "era": "TBD",
+    "era": "Die Neuzeit",
     "spookiness": 0,
-    "description": "Beschreibung folgt."
+    "description": "Noch ohne Notiz."
   },
   {
     "number": 226,
     "title": "Die drei ??? Die Spur der Toten",
-    "era": "TBD",
+    "era": "Die Neuzeit",
     "spookiness": 0,
-    "description": "Beschreibung folgt."
+    "description": "Noch ohne Notiz."
   },
   {
     "number": 227,
     "title": "Die drei ??? Melodie der Rache",
-    "era": "TBD",
+    "era": "Die Neuzeit",
     "spookiness": 0,
-    "description": "Beschreibung folgt."
+    "description": "Noch ohne Notiz."
   },
   {
     "number": 228,
     "title": "Die drei ??? Der Ruf der Krähen",
-    "era": "TBD",
+    "era": "Die Neuzeit",
     "spookiness": 0,
-    "description": "Beschreibung folgt."
+    "description": "Noch ohne Notiz."
   },
   {
     "number": 229,
     "title": "Die drei ??? Drehbuch der Täuschung",
-    "era": "TBD",
+    "era": "Die Neuzeit",
     "spookiness": 0,
-    "description": "Beschreibung folgt."
+    "description": "Noch ohne Notiz."
   },
   {
     "number": 230,
     "title": "Die drei ??? Der Tag der Toten",
-    "era": "TBD",
+    "era": "Die Neuzeit",
     "spookiness": 0,
-    "description": "Beschreibung folgt."
+    "description": "Noch ohne Notiz."
   },
   {
     "number": 231,
     "title": "Die drei ??? und der Dreiäugige Schakal",
-    "era": "TBD",
+    "era": "Die Neuzeit",
     "spookiness": 0,
-    "description": "Beschreibung folgt."
+    "description": "Noch ohne Notiz."
   },
   {
     "number": 232,
     "title": "Die drei ??? Die Stadt aus Gold",
-    "era": "TBD",
+    "era": "Die Neuzeit",
     "spookiness": 0,
-    "description": "Beschreibung folgt."
+    "description": "Noch ohne Notiz."
   },
   {
     "number": 233,
     "title": "Die drei ??? Die Nacht der Gewitter",
-    "era": "TBD",
+    "era": "Die Neuzeit",
     "spookiness": 0,
-    "description": "Beschreibung folgt."
+    "description": "Noch ohne Notiz."
   },
   {
     "number": 234,
     "title": "Die drei ??? und der lebende Tresor",
-    "era": "TBD",
+    "era": "Die Neuzeit",
     "spookiness": 0,
-    "description": "Beschreibung folgt."
+    "description": "Noch ohne Notiz."
   },
   {
     "number": 235,
     "title": "Die drei ??? und das Fantasmofon",
-    "era": "TBD",
+    "era": "Die Neuzeit",
     "spookiness": 0,
-    "description": "Beschreibung folgt."
+    "description": "Noch ohne Notiz."
   },
   {
     "number": 236,
     "title": "Die drei ??? Im Bann des Barrakudas",
-    "era": "TBD",
+    "era": "Die Neuzeit",
     "spookiness": 0,
-    "description": "Beschreibung folgt."
+    "description": "Noch ohne Notiz."
   },
   {
     "number": 237,
     "title": "Die drei ??? und der rote Büffel",
-    "era": "TBD",
+    "era": "Die Neuzeit",
     "spookiness": 0,
-    "description": "Beschreibung folgt."
+    "description": "Noch ohne Notiz."
   },
   {
     "number": 238,
     "title": "Die drei ??? Falsche Schuld",
-    "era": "TBD",
+    "era": "Die Neuzeit",
     "spookiness": 0,
-    "description": "Beschreibung folgt."
+    "description": "Noch ohne Notiz."
   },
   {
     "number": 239,
     "title": "Die drei ??? Das Geheimnis der sieben Palmen",
-    "era": "TBD",
+    "era": "Die Neuzeit",
     "spookiness": 0,
-    "description": "Beschreibung folgt."
+    "description": "Noch ohne Notiz."
   }
 ];
 
@@ -2429,16 +2432,85 @@
     const episodeNumber = document.getElementById('episodeNumber');
     const episodeTitle = document.getElementById('episodeTitle');
     const episodeEra = document.getElementById('episodeEra');
-    const episodeSpook = document.getElementById('episodeSpook');
+    const episodeCategoryLabel = document.getElementById('episodeCategoryLabel');
+    const categorySelect = document.getElementById('categorySelect');
     const episodeDescription = document.getElementById('episodeDescription');
     const episodeStatus = document.getElementById('episodeStatus');
     const episodeCount = document.getElementById('episodeCount');
+    const favoriteBtn = document.getElementById('favoriteBtn');
+    const favoriteLabel = document.getElementById('favoriteLabel');
+    const favoriteCount = document.getElementById('favoriteCount');
 
     let lastIndex = -1;
+    let currentEpisode = null;
+    const categoryStorageKey = 'nachtarchiv-categories-live';
+    const storedCategories = JSON.parse(localStorage.getItem(categoryStorageKey) || '{}');
     episodeCount.textContent = String(episodes.length);
+
+    function getCategory(number) {
+      return storedCategories[String(number)] || '';
+    }
+
+    function setCategory(number, value) {
+      if (!number) return;
+      if (value) {
+        storedCategories[String(number)] = value;
+      } else {
+        delete storedCategories[String(number)];
+      }
+      localStorage.setItem(categoryStorageKey, JSON.stringify(storedCategories));
+    }
+
+    function formatCategory(value) {
+      return value || 'noch offen';
+    }
+
 
     function formatNumber(number) {
       return String(number).padStart(3, '0');
+    }
+
+    function getEra(number) {
+      if (number <= 46) return 'Die Klassiker';
+      if (number <= 56) return 'Crimebusters';
+      if (number <= 72) return 'Die ersten deutschen Vorlagen';
+      if (number <= 119) return 'Die Triumvirats-Ära';
+      return 'Die Neuzeit';
+    }
+
+    function getFavorites() {
+      try {
+        return JSON.parse(localStorage.getItem('nachtarchiv-favorites') || '[]');
+      } catch (error) {
+        return [];
+      }
+    }
+
+    function isFavorite(number) {
+      return getFavorites().includes(number);
+    }
+
+    function setFavorite(number, active) {
+      const favorites = new Set(getFavorites());
+      if (active) {
+        favorites.add(number);
+      } else {
+        favorites.delete(number);
+      }
+      localStorage.setItem('nachtarchiv-favorites', JSON.stringify([...favorites].sort((a, b) => a - b)));
+      updateFavoriteCount();
+    }
+
+    function updateFavoriteCount() {
+      favoriteCount.textContent = String(getFavorites().length);
+    }
+
+    function updateFavoriteUi(number) {
+      const active = isFavorite(number);
+      favoriteBtn.classList.toggle('is-favorite', active);
+      favoriteBtn.setAttribute('aria-pressed', String(active));
+      favoriteBtn.querySelector('.favorite-icon').textContent = active ? '♥' : '♡';
+      favoriteLabel.textContent = active ? 'Favorit' : 'Favorit';
     }
 
     function getRandomEpisode() {
@@ -2457,10 +2529,14 @@
       episodeCard.dataset.case = formatNumber(episode.number);
       episodeNumber.textContent = `Folge ${formatNumber(episode.number)}`;
       episodeTitle.textContent = episode.title;
-      episodeEra.textContent = episode.era || 'TBD';
-      episodeSpook.textContent = `${episode.spookiness || 0}/5`;
-      episodeDescription.textContent = episode.description || 'Beschreibung folgt.';
-      episodeStatus.textContent = `last draw · folge ${formatNumber(episode.number)}`;
+      currentEpisode = episode;
+      const savedCategory = getCategory(episode.number);
+      episodeEra.textContent = getEra(episode.number);
+      episodeCategoryLabel.textContent = formatCategory(savedCategory);
+      updateFavoriteUi(episode.number);
+      categorySelect.value = savedCategory;
+      episodeDescription.textContent = episode.description || 'Noch ohne Notiz.';
+      episodeStatus.textContent = `letzter zug · folge ${formatNumber(episode.number)}`;
 
       episodeCard.animate(
         [
@@ -2479,24 +2555,40 @@
       renderEpisode(episode);
     }
 
-    randomizeBtn.addEventListener('click', drawEpisode);
-    rerollBtn.addEventListener('click', drawEpisode);
+    function drawAndReveal() {
+      drawEpisode();
+      setTimeout(() => {
+        episodeCard.scrollIntoView({
+          behavior: 'smooth',
+          block: 'center'
+        });
+      }, 120);
+    }
+
+    randomizeBtn.addEventListener('click', drawAndReveal);
+    rerollBtn.addEventListener('click', drawAndReveal);
+
+    favoriteBtn.addEventListener('click', () => {
+      if (!currentEpisode) return;
+      const nextState = !isFavorite(currentEpisode.number);
+      setFavorite(currentEpisode.number, nextState);
+      updateFavoriteUi(currentEpisode.number);
+      episodeStatus.textContent = nextState
+        ? `favorit gespeichert · folge ${formatNumber(currentEpisode.number)}`
+        : `favorit entfernt · folge ${formatNumber(currentEpisode.number)}`;
+    });
+
+    categorySelect.addEventListener('change', (event) => {
+      if (!currentEpisode) return;
+      const value = event.target.value;
+      setCategory(currentEpisode.number, value);
+      episodeCategoryLabel.textContent = formatCategory(value);
+      episodeStatus.textContent = value
+        ? `gespeichert · ${value}`
+        : `kategorie entfernt · folge ${formatNumber(currentEpisode.number)}`;
+    });
 
     renderEpisode(episodes[0]);
   </script>
-<script>
-// Mobile UX improvement: scroll to result after generating a case
-const randomBtn = document.querySelector('button');
-if(randomBtn){
-  randomBtn.addEventListener('click', () => {
-    setTimeout(() => {
-      const result = document.querySelector('#result, .result, .case, .card');
-      if(result){
-        result.scrollIntoView({behavior:'smooth', block:'start'});
-      }
-    }, 150);
-  });
-}
-</script>
 </body>
 </html>
