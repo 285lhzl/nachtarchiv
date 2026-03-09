@@ -689,7 +689,7 @@
           </div>
 
           <p class="episode-description" id="episodeDescription">
-            Der erste Platzhalter für Beschreibung.
+            Der erste Platzhalter für deine spätere echte Beschreibung. Für Version 1 reicht hier eine kleine Vorschau, damit das Interface schon lebt.
           </p>
 
           <div class="footer-note">
@@ -716,9 +716,9 @@
     </section>
 
     <section class="panel info-panel">
-      <div class="section-label">// Später ergänzen</div>
+      <div class="section-label">// Später ergänzbar</div>
       <p class="idea-copy">
-        och einiges tbd <strong>Beschreibugen, Kategorien noch tbd</strong>. .
+        Diese Version ist bewusst <strong>visuell zuerst</strong>. Danach hängen wir deine echte Spotify-Liste, Ären, Beschreibungen, Gruselfaktor und später auch Filter dran.
       </p>
 
       <div class="tag-row">
@@ -732,7 +732,7 @@
       <div class="install-note">
         <div class="section-label">// Handy als App</div>
         <p>
-          Erstes mal nicht final.
+          Auf GitHub Pages hosten und dann auf dem Handy zum Home-Bildschirm hinzufügen. Für eine richtige PWA mit App-Icon und Offline-Modus ergänzen wir im nächsten Schritt noch Manifest und Service Worker.
         </p>
       </div>
     </section>
@@ -2490,10 +2490,10 @@ const randomBtn = document.querySelector('button');
 if(randomBtn){
   randomBtn.addEventListener('click', () => {
     setTimeout(() => {
-      window.scrollTo({
-        top: document.body.scrollHeight,
-        behavior: 'smooth'
-      });
+      const result = document.querySelector('#result, .result, .case, .card');
+      if(result){
+        result.scrollIntoView({behavior:'smooth', block:'start'});
+      }
     }, 150);
   });
 }
